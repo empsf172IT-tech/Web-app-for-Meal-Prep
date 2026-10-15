@@ -263,40 +263,40 @@
           </p>
 
           <!-- CTAs -->
-          <div class="flex flex-wrap items-center gap-4 pt-2">
+          <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 pt-2 max-w-xs sm:max-w-none">
             <a 
               href="#meal-planner" 
-              class="px-8 py-3.5 rounded-full bg-plum-600 hover:bg-plum-700 dark:bg-terracotta-400 dark:hover:bg-terracotta-500 text-ivory-100 dark:text-plum-950 font-bold text-sm shadow-xl shadow-plum-600/10 dark:shadow-terracotta-400/10 transition-all duration-200 transform hover:-translate-y-0.5"
+              class="w-full sm:w-auto min-w-[170px] px-8 py-3.5 rounded-full bg-plum-600 hover:bg-plum-700 dark:bg-terracotta-400 dark:hover:bg-terracotta-500 text-ivory-100 dark:text-plum-950 font-bold text-sm shadow-xl shadow-plum-600/10 dark:shadow-terracotta-400/10 border-2 border-transparent transition-all duration-200 transform hover:-translate-y-0.5 text-center flex items-center justify-center"
             >
               Plan My Week
             </a>
             <a 
               href="#recipes" 
-              class="px-8 py-3.5 rounded-full border-2 border-plum-600/20 dark:border-ivory-100/20 text-plum-600 dark:text-ivory-100 hover:border-terracotta-400 hover:text-terracotta-500 font-bold text-sm transition-all duration-200"
+              class="w-full sm:w-auto min-w-[170px] px-8 py-3.5 rounded-full border-2 border-plum-600/20 dark:border-ivory-100/20 text-plum-600 dark:text-ivory-100 hover:border-terracotta-400 hover:text-terracotta-500 font-bold text-sm transition-all duration-200 text-center flex items-center justify-center"
             >
               Explore Recipes
             </a>
           </div>
 
           <!-- Feature badges list -->
-          <div class="pt-6 grid grid-cols-3 gap-4 border-t border-plum-600/10 dark:border-plum-800">
-            <div>
-              <p class="text-2xl font-black text-plum-600 dark:text-terracotta-300">100%</p>
-              <p class="text-xs text-plum-400 dark:text-ivory-400 font-medium mt-0.5">Custom Macro Fit</p>
+          <div class="pt-6 grid grid-cols-3 gap-2.5 sm:gap-4 border-t border-plum-600/10 dark:border-plum-800 text-center sm:text-left">
+            <div class="p-2 sm:p-0 rounded-xl bg-ivory-200/50 sm:bg-transparent dark:bg-plum-900/30 sm:dark:bg-transparent">
+              <p class="text-xl sm:text-2xl font-black text-plum-600 dark:text-terracotta-300 whitespace-nowrap">100%</p>
+              <p class="text-[11px] sm:text-xs text-plum-500 dark:text-ivory-400 font-medium mt-0.5 leading-tight"><span class="hidden sm:inline">Custom </span>Macro Fit</p>
             </div>
-            <div>
-              <p class="text-2xl font-black text-plum-600 dark:text-terracotta-300">45 Min</p>
-              <p class="text-xs text-plum-400 dark:text-ivory-400 font-medium mt-0.5">Sunday Batch Prep</p>
+            <div class="p-2 sm:p-0 rounded-xl bg-ivory-200/50 sm:bg-transparent dark:bg-plum-900/30 sm:dark:bg-transparent">
+              <p class="text-xl sm:text-2xl font-black text-plum-600 dark:text-terracotta-300 whitespace-nowrap">45 Min</p>
+              <p class="text-[11px] sm:text-xs text-plum-500 dark:text-ivory-400 font-medium mt-0.5 leading-tight"><span class="hidden sm:inline">Sunday </span>Batch Prep</p>
             </div>
-            <div>
-              <p class="text-2xl font-black text-plum-600 dark:text-terracotta-300">0 Waste</p>
-              <p class="text-xs text-plum-400 dark:text-ivory-400 font-medium mt-0.5">Automated Grocery</p>
+            <div class="p-2 sm:p-0 rounded-xl bg-ivory-200/50 sm:bg-transparent dark:bg-plum-900/30 sm:dark:bg-transparent">
+              <p class="text-xl sm:text-2xl font-black text-plum-600 dark:text-terracotta-300 whitespace-nowrap">0 Waste</p>
+              <p class="text-[11px] sm:text-xs text-plum-500 dark:text-ivory-400 font-medium mt-0.5 leading-tight"><span class="hidden sm:inline">Smart </span>Grocery</p>
             </div>
           </div>
         </div>
 
         <!-- Right Hero Visual & Decorative Card -->
-        <div class="lg:col-span-5 relative">
+        <div class="lg:col-span-5 relative mt-4 lg:mt-0 pb-12 sm:pb-10 lg:pb-0 max-w-lg mx-auto lg:max-w-none w-full">
           <!-- Main Food Photography container -->
           <div class="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white/60 dark:border-plum-800/80 aspect-[4/3] sm:aspect-[16/11]">
             <img 
@@ -308,36 +308,36 @@
             <div class="absolute inset-0 bg-gradient-to-t from-plum-950/60 via-transparent to-transparent"></div>
           </div>
 
-          <!-- Floating Nutrition Summary Card -->
-          <div class="absolute -bottom-6 -left-4 sm:-bottom-8 sm:-left-6 glass-card rounded-2xl p-4 sm:p-5 shadow-2xl border border-plum-600/10 dark:border-terracotta-400/30 max-w-xs z-10 bg-white/95 dark:bg-plum-900/95">
-            <div class="flex items-center justify-between mb-2">
-              <span class="text-xs font-bold text-terracotta-600 dark:text-terracotta-400 uppercase tracking-wider">Sample Daily Fuel</span>
-              <span class="text-[11px] font-bold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-300">94% Target</span>
-            </div>
-            <p class="text-2xl font-extrabold text-plum-600 dark:text-ivory-100">2,150 <span class="text-xs font-normal text-plum-400 dark:text-ivory-300">kcal</span></p>
-            
-            <div class="grid grid-cols-3 gap-2 mt-3 pt-3 border-t border-plum-600/10 dark:border-plum-800 text-center">
-              <div>
-                <p class="text-[10px] uppercase font-bold text-plum-400 dark:text-ivory-400">Protein</p>
-                <p class="text-xs font-extrabold text-plum-600 dark:text-ivory-100">142g</p>
-              </div>
-              <div>
-                <p class="text-[10px] uppercase font-bold text-plum-400 dark:text-ivory-400">Carbs</p>
-                <p class="text-xs font-extrabold text-plum-600 dark:text-ivory-100">210g</p>
-              </div>
-              <div>
-                <p class="text-[10px] uppercase font-bold text-plum-400 dark:text-ivory-400">Fats</p>
-                <p class="text-xs font-extrabold text-plum-600 dark:text-ivory-100">65g</p>
-              </div>
+          <!-- Floating Top Decorative Badge (Now visible and scaled on mobile view) -->
+          <div class="absolute -top-3.5 right-3 sm:-top-5 sm:-right-4 glass-card px-3 py-1.5 sm:px-4 sm:py-2 rounded-xl sm:rounded-2xl shadow-lg border border-plum-600/10 dark:border-terracotta-400/30 flex items-center gap-2 bg-white/95 dark:bg-plum-900/95 z-20">
+            <span class="text-terracotta-500 text-sm sm:text-lg">🌿</span>
+            <div class="leading-tight">
+              <p class="text-[11px] sm:text-xs font-bold text-plum-600 dark:text-ivory-100">Clean Ingredients</p>
+              <p class="text-[9px] sm:text-[10px] text-plum-400 dark:text-ivory-400">Zero ultra-processed food</p>
             </div>
           </div>
 
-          <!-- Floating Top Decorative Badge -->
-          <div class="absolute -top-4 -right-2 sm:-top-5 sm:-right-4 glass-card px-4 py-2 rounded-2xl shadow-lg border border-plum-600/10 dark:border-terracotta-400/30 hidden sm:flex items-center gap-2 bg-white/90 dark:bg-plum-900/90">
-            <span class="text-terracotta-500 text-lg">🌿</span>
-            <div>
-              <p class="text-xs font-bold text-plum-600 dark:text-ivory-100">Clean Ingredients</p>
-              <p class="text-[10px] text-plum-400 dark:text-ivory-400">Zero ultra-processed food</p>
+          <!-- Floating Nutrition Summary Card (Centered on mobile & tablet, staggered on desktop) -->
+          <div class="absolute -bottom-5 left-1/2 -translate-x-1/2 w-[calc(100%-2rem)] max-w-[310px] sm:max-w-xs lg:left-auto lg:translate-x-0 lg:-left-6 lg:-bottom-8 lg:w-auto glass-card rounded-2xl p-3.5 sm:p-5 shadow-2xl border border-plum-600/10 dark:border-terracotta-400/30 z-10 bg-white/95 dark:bg-plum-900/95">
+            <div class="flex items-center justify-between mb-1.5 sm:mb-2">
+              <span class="text-[11px] sm:text-xs font-bold text-terracotta-600 dark:text-terracotta-400 uppercase tracking-wider">Sample Daily Fuel</span>
+              <span class="text-[10px] sm:text-[11px] font-bold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-300">94% Target</span>
+            </div>
+            <p class="text-xl sm:text-2xl font-extrabold text-plum-600 dark:text-ivory-100 leading-tight">2,150 <span class="text-xs font-normal text-plum-400 dark:text-ivory-300">kcal</span></p>
+            
+            <div class="grid grid-cols-3 gap-2 mt-2.5 sm:mt-3 pt-2.5 sm:pt-3 border-t border-plum-600/10 dark:border-plum-800 text-center">
+              <div>
+                <p class="text-[9px] sm:text-[10px] uppercase font-bold text-plum-400 dark:text-ivory-400">Protein</p>
+                <p class="text-xs sm:text-sm font-extrabold text-plum-600 dark:text-ivory-100">142g</p>
+              </div>
+              <div>
+                <p class="text-[9px] sm:text-[10px] uppercase font-bold text-plum-400 dark:text-ivory-400">Carbs</p>
+                <p class="text-xs sm:text-sm font-extrabold text-plum-600 dark:text-ivory-100">210g</p>
+              </div>
+              <div>
+                <p class="text-[9px] sm:text-[10px] uppercase font-bold text-plum-400 dark:text-ivory-400">Fats</p>
+                <p class="text-xs sm:text-sm font-extrabold text-plum-600 dark:text-ivory-100">65g</p>
+              </div>
             </div>
           </div>
 
@@ -745,10 +745,10 @@
             <label for="profile-activity" class="block text-xs font-bold uppercase tracking-wider text-plum-600 dark:text-ivory-100 mb-2">
               Weekly Activity Level
             </label>
-            <select id="profile-activity" class="w-full px-4 py-2.5 rounded-xl text-xs font-semibold bg-ivory-100 dark:bg-plum-950 border border-plum-600/10 dark:border-plum-800 text-plum-600 dark:text-ivory-100 focus:outline-none focus:ring-2 focus:ring-terracotta-400">
+            <select id="profile-activity" class="w-full pl-3.5 pr-8 py-2.5 rounded-xl text-xs font-semibold bg-ivory-100 dark:bg-plum-950 border border-plum-600/10 dark:border-plum-800 text-plum-600 dark:text-ivory-100 focus:outline-none focus:ring-2 focus:ring-terracotta-400">
               <option value="sedentary">Sedentary (Desk work, light walks)</option>
-              <option value="moderate" selected>Moderately Active (3-4 workouts/wk)</option>
-              <option value="active">Active (5+ strength/cardio sessions)</option>
+              <option value="moderate" selected>Moderate (3-4 workouts/wk)</option>
+              <option value="active">Active (5+ workouts/wk)</option>
               <option value="athlete">High-Performance Athlete</option>
             </select>
           </div>
@@ -756,17 +756,17 @@
             <label for="profile-goal" class="block text-xs font-bold uppercase tracking-wider text-plum-600 dark:text-ivory-100 mb-2">
               Primary Nutrition Goal
             </label>
-            <select id="profile-goal" class="w-full px-4 py-2.5 rounded-xl text-xs font-semibold bg-ivory-100 dark:bg-plum-950 border border-plum-600/10 dark:border-plum-800 text-plum-600 dark:text-ivory-100 focus:outline-none focus:ring-2 focus:ring-terracotta-400">
-              <option value="maintain" selected>Maintain Healthy Vitality & Longevity</option>
+            <select id="profile-goal" class="w-full pl-3.5 pr-8 py-2.5 rounded-xl text-xs font-semibold bg-ivory-100 dark:bg-plum-950 border border-plum-600/10 dark:border-plum-800 text-plum-600 dark:text-ivory-100 focus:outline-none focus:ring-2 focus:ring-terracotta-400">
+              <option value="maintain" selected>Maintain Healthy Vitality</option>
               <option value="muscle-gain">Lean Muscle Gain (+Surplus)</option>
               <option value="weight-loss">Healthy Fat Loss (-Deficit)</option>
-              <option value="energy">Sustained Daily Energy & Focus</option>
+              <option value="energy">Sustained Daily Energy</option>
             </select>
           </div>
         </div>
 
         <!-- Live Target Preview Banner -->
-        <div class="p-4 rounded-2xl bg-terracotta-50 dark:bg-plum-950/70 border border-terracotta-200/50 dark:border-plum-800 flex items-center justify-between">
+        <div class="p-4 rounded-2xl bg-terracotta-50 dark:bg-plum-950/70 border border-terracotta-200/50 dark:border-plum-800 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
           <div>
             <p class="text-xs font-bold text-terracotta-600 dark:text-terracotta-400">Calculated Daily Target:</p>
             <p class="text-lg font-black text-plum-600 dark:text-ivory-100">
@@ -776,7 +776,7 @@
           </div>
           <button 
             type="submit" 
-            class="px-6 py-3 rounded-full bg-plum-600 hover:bg-plum-700 dark:bg-terracotta-400 dark:hover:bg-terracotta-500 text-ivory-100 dark:text-plum-950 font-bold text-xs shadow-md transition transform hover:-translate-y-0.5"
+            class="w-full sm:w-auto px-6 py-3 rounded-full bg-plum-600 hover:bg-plum-700 dark:bg-terracotta-400 dark:hover:bg-terracotta-500 text-ivory-100 dark:text-plum-950 font-bold text-xs shadow-md transition transform hover:-translate-y-0.5 text-center"
           >
             Personalize My Plan
           </button>
@@ -812,9 +812,9 @@
       </div>
 
       <!-- 3-Step Visual Workflow Header -->
-      <div class="mb-4 flex items-center justify-between border-b border-plum-600/10 dark:border-plum-800 pb-2.5">
+      <div class="mb-4 flex flex-col sm:flex-row sm:items-center justify-between gap-1.5 border-b border-plum-600/10 dark:border-plum-800 pb-2.5">
         <div class="flex items-center gap-2">
-          <span class="w-2.5 h-2.5 rounded-full bg-terracotta-400"></span>
+          <span class="w-2.5 h-2.5 rounded-full bg-terracotta-400 shrink-0"></span>
           <h3 class="text-xs font-extrabold uppercase tracking-wider text-plum-600 dark:text-ivory-100">
             3-Step Sunday Batch Workflow
           </h3>
@@ -823,53 +823,62 @@
       </div>
 
       <!-- 3-Step Visual Workflow Cards -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5 lg:gap-8 mb-16 items-stretch">
         
         <!-- Step 1 -->
-        <div class="glass-card rounded-3xl p-6 border border-plum-600/10 dark:border-plum-800 bg-white/90 dark:bg-plum-900/60 relative flex flex-col justify-between">
-          <div>
-            <div class="w-12 h-12 rounded-2xl bg-terracotta-100 dark:bg-plum-800 text-terracotta-600 dark:text-terracotta-300 font-black text-xl flex items-center justify-center mb-6 shadow-sm">
+        <div class="glass-card rounded-3xl p-5 md:p-5 lg:p-6 border border-plum-600/10 dark:border-plum-800 bg-white/90 dark:bg-plum-900/60 relative flex flex-col justify-between h-full transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+          <div class="flex-1 flex flex-col">
+            <div class="w-12 h-12 rounded-2xl bg-terracotta-100 dark:bg-plum-800 text-terracotta-600 dark:text-terracotta-300 font-black text-xl flex items-center justify-center mb-5 md:mb-6 shadow-sm shrink-0">
               01
             </div>
-            <h4 class="text-lg font-bold text-plum-600 dark:text-ivory-100 mb-2">Plan Your Meals</h4>
-            <p class="text-xs text-plum-500 dark:text-ivory-300 leading-relaxed">
+            <h4 class="text-base md:text-[17px] lg:text-lg font-bold text-plum-600 dark:text-ivory-100 mb-2 md:min-h-[3rem] lg:min-h-[3.25rem] flex items-start">
+              Plan Your Meals
+            </h4>
+            <p class="text-xs text-plum-500 dark:text-ivory-300 leading-relaxed mb-4">
               Design your Monday-to-Sunday schedule with your exact macro allocations in under five minutes. No guesswork.
             </p>
           </div>
-          <div class="mt-6 pt-4 border-t border-plum-600/10 dark:border-plum-800 text-[11px] font-bold text-terracotta-600 dark:text-terracotta-400">
-            5 Min Calibration →
+          <div class="mt-auto pt-4 border-t border-plum-600/10 dark:border-plum-800 text-[11px] font-bold text-terracotta-600 dark:text-terracotta-400 flex items-center justify-between">
+            <span>5 Min Calibration</span>
+            <span>→</span>
           </div>
         </div>
 
         <!-- Step 2 -->
-        <div class="glass-card rounded-3xl p-6 border border-plum-600/10 dark:border-plum-800 bg-white/90 dark:bg-plum-900/60 relative flex flex-col justify-between">
-          <div>
-            <div class="w-12 h-12 rounded-2xl bg-plum-100 dark:bg-plum-800 text-plum-600 dark:text-ivory-100 font-black text-xl flex items-center justify-center mb-6 shadow-sm">
+        <div class="glass-card rounded-3xl p-5 md:p-5 lg:p-6 border border-plum-600/10 dark:border-plum-800 bg-white/90 dark:bg-plum-900/60 relative flex flex-col justify-between h-full transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+          <div class="flex-1 flex flex-col">
+            <div class="w-12 h-12 rounded-2xl bg-plum-100 dark:bg-plum-800 text-plum-600 dark:text-ivory-100 font-black text-xl flex items-center justify-center mb-5 md:mb-6 shadow-sm shrink-0">
               02
             </div>
-            <h4 class="text-lg font-bold text-plum-600 dark:text-ivory-100 mb-2">Batch Cook in Minutes</h4>
-            <p class="text-xs text-plum-500 dark:text-ivory-300 leading-relaxed">
+            <h4 class="text-base md:text-[17px] lg:text-lg font-bold text-plum-600 dark:text-ivory-100 mb-2 md:min-h-[3rem] lg:min-h-[3.25rem] flex items-start">
+              Batch Cook in Minutes
+            </h4>
+            <p class="text-xs text-plum-500 dark:text-ivory-300 leading-relaxed mb-4">
               Simultaneously roast root vegetables, simmer grains in aromatics, and grill lean proteins in generous batches.
             </p>
           </div>
-          <div class="mt-6 pt-4 border-t border-plum-600/10 dark:border-plum-800 text-[11px] font-bold text-plum-600 dark:text-ivory-200">
-            45 Min Sunday Rhythm →
+          <div class="mt-auto pt-4 border-t border-plum-600/10 dark:border-plum-800 text-[11px] font-bold text-plum-600 dark:text-ivory-200 flex items-center justify-between">
+            <span>45 Min Sunday Rhythm</span>
+            <span>→</span>
           </div>
         </div>
 
         <!-- Step 3 -->
-        <div class="glass-card rounded-3xl p-6 border border-plum-600/10 dark:border-plum-800 bg-white/90 dark:bg-plum-900/60 relative flex flex-col justify-between">
-          <div>
-            <div class="w-12 h-12 rounded-2xl bg-emerald-100 dark:bg-plum-800 text-emerald-700 dark:text-emerald-300 font-black text-xl flex items-center justify-center mb-6 shadow-sm">
+        <div class="glass-card rounded-3xl p-5 md:p-5 lg:p-6 border border-plum-600/10 dark:border-plum-800 bg-white/90 dark:bg-plum-900/60 relative flex flex-col justify-between h-full transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+          <div class="flex-1 flex flex-col">
+            <div class="w-12 h-12 rounded-2xl bg-emerald-100 dark:bg-plum-800 text-emerald-700 dark:text-emerald-300 font-black text-xl flex items-center justify-center mb-5 md:mb-6 shadow-sm shrink-0">
               03
             </div>
-            <h4 class="text-lg font-bold text-plum-600 dark:text-ivory-100 mb-2">Store, Organize & Enjoy</h4>
-            <p class="text-xs text-plum-500 dark:text-ivory-300 leading-relaxed">
+            <h4 class="text-base md:text-[17px] lg:text-lg font-bold text-plum-600 dark:text-ivory-100 mb-2 md:min-h-[3rem] lg:min-h-[3.25rem] flex items-start">
+              Store, Organize & Enjoy
+            </h4>
+            <p class="text-xs text-plum-500 dark:text-ivory-300 leading-relaxed mb-4">
               Pack into airtight glass bento containers. Enjoy fresh, crisp, restaurant-grade nourishment every single day.
             </p>
           </div>
-          <div class="mt-6 pt-4 border-t border-plum-600/10 dark:border-plum-800 text-[11px] font-bold text-emerald-600 dark:text-emerald-400">
-            Zero Midweek Stress →
+          <div class="mt-auto pt-4 border-t border-plum-600/10 dark:border-plum-800 text-[11px] font-bold text-emerald-600 dark:text-emerald-400 flex items-center justify-between">
+            <span>Zero Midweek Stress</span>
+            <span>→</span>
           </div>
         </div>
 
@@ -890,12 +899,12 @@
 
         <!-- Interactive Sunday Prep Checklist -->
         <div class="lg:col-span-6 glass-card rounded-3xl p-6 sm:p-8 border border-plum-600/10 dark:border-plum-800 bg-white/95 dark:bg-plum-900/80 shadow-md">
-          <div class="flex items-center justify-between mb-4 pb-2 border-b border-plum-600/10 dark:border-plum-800">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4 pb-2 border-b border-plum-600/10 dark:border-plum-800">
             <div>
               <h4 class="font-extrabold text-plum-600 dark:text-ivory-100 text-lg">Sunday Prep Checklist</h4>
               <p class="text-xs text-plum-400 dark:text-ivory-400 mt-0.5">Interactive batch checklist</p>
             </div>
-            <div class="text-right">
+            <div class="text-left sm:text-right">
               <span id="prep-progress-text" class="text-xs font-bold text-terracotta-600 dark:text-terracotta-400">4/7 Tasks Done (57%)</span>
               <div class="w-32 bg-ivory-200 dark:bg-plum-950 h-2 rounded-full overflow-hidden mt-1">
                 <div id="prep-progress-meter" class="h-full bg-terracotta-400 rounded-full transition-all duration-300" style="width: 57%;"></div>
@@ -950,17 +959,17 @@
         
         <!-- Weekly Calorie Bar Chart (Left 8 cols) -->
         <div class="lg:col-span-8 glass-card rounded-3xl p-6 sm:p-8 border border-plum-600/10 dark:border-plum-800 bg-white/95 dark:bg-plum-900/80 shadow-md">
-          <div class="flex items-center justify-between mb-6">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6">
             <div>
               <h4 class="font-extrabold text-plum-600 dark:text-ivory-100 text-lg">Weekly Calorie Trajectory</h4>
               <p class="text-xs text-plum-400 dark:text-ivory-400 mt-0.5">Daily intake vs 2,150 kcal maintenance line</p>
             </div>
-            <div class="flex items-center gap-4 text-xs font-bold">
-              <span class="flex items-center gap-1.5 text-plum-600 dark:text-ivory-200">
-                <span class="w-2.5 h-2.5 rounded-full bg-terracotta-400"></span> Actual Fuel
+            <div class="flex flex-wrap items-center gap-3 sm:gap-4 text-xs font-bold">
+              <span class="flex items-center gap-1.5 text-plum-600 dark:text-ivory-200 whitespace-nowrap">
+                <span class="w-2.5 h-2.5 rounded-full bg-terracotta-400 shrink-0"></span> Actual Fuel
               </span>
-              <span class="flex items-center gap-1.5 text-plum-400 dark:text-ivory-400">
-                <span class="w-4 h-0.5 bg-plum-400 border-dashed"></span> Target Baseline
+              <span class="flex items-center gap-1.5 text-plum-400 dark:text-ivory-400 whitespace-nowrap">
+                <span class="w-4 h-0.5 bg-plum-400 border-dashed shrink-0"></span> Target Baseline
               </span>
             </div>
           </div>
@@ -1156,19 +1165,33 @@
           </ul>
 
           <!-- Store badges (apps not released yet; clicking explains this) -->
-          <div class="flex flex-wrap gap-3">
-            <button type="button" id="app-store-btn" data-store="iPhone" class="store-badge-btn inline-flex items-center gap-3 px-5 py-2.5 rounded-xl bg-plum-600 dark:bg-ivory-100 text-ivory-100 dark:text-plum-900 shadow-md hover:bg-plum-700 dark:hover:bg-ivory-200 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-terracotta-400 focus-visible:ring-offset-2 focus-visible:ring-offset-ivory-100 dark:focus-visible:ring-offset-plum-950">
-              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+          <div class="flex flex-col sm:flex-row gap-3 max-w-xs sm:max-w-none">
+            <button 
+              type="button" 
+              id="app-store-btn" 
+              data-store="iPhone" 
+              class="store-badge-btn w-full sm:w-auto min-w-[205px] inline-flex items-center gap-3.5 px-5 py-2.5 rounded-xl bg-plum-600 dark:bg-ivory-100 text-ivory-100 dark:text-plum-900 border-2 border-transparent shadow-md hover:bg-plum-700 dark:hover:bg-ivory-200 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-terracotta-400 focus-visible:ring-offset-2"
+            >
+              <div class="w-6 h-6 flex items-center justify-center shrink-0">
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+              </div>
               <span class="text-left leading-tight">
-                <span class="block text-[10px] font-semibold opacity-80">Coming soon on the</span>
-                <span class="block text-sm font-extrabold">App Store</span>
+                <span class="block text-[10px] font-semibold opacity-85">Coming soon on the</span>
+                <span class="block text-sm font-extrabold tracking-tight">App Store</span>
               </span>
             </button>
-            <button type="button" id="google-play-btn" data-store="Android" class="store-badge-btn inline-flex items-center gap-3 px-5 py-2.5 rounded-xl border-2 border-plum-600/20 dark:border-ivory-100/20 text-plum-600 dark:text-ivory-100 hover:border-terracotta-400 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-terracotta-400 focus-visible:ring-offset-2 focus-visible:ring-offset-ivory-100 dark:focus-visible:ring-offset-plum-950">
-              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.198l2.807 1.626a1 1 0 0 1 0 1.73l-2.808 1.626L15.206 12l2.492-2.491zM5.864 2.658L16.802 8.99l-2.303 2.303-8.635-8.635z"/></svg>
+            <button 
+              type="button" 
+              id="google-play-btn" 
+              data-store="Android" 
+              class="store-badge-btn w-full sm:w-auto min-w-[205px] inline-flex items-center gap-3.5 px-5 py-2.5 rounded-xl border-2 border-plum-600/20 dark:border-ivory-100/20 bg-white/60 dark:bg-plum-900/40 text-plum-600 dark:text-ivory-100 hover:border-terracotta-400 hover:bg-white dark:hover:bg-plum-900 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-terracotta-400 focus-visible:ring-offset-2"
+            >
+              <div class="w-6 h-6 flex items-center justify-center shrink-0">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.198l2.807 1.626a1 1 0 0 1 0 1.73l-2.808 1.626L15.206 12l2.492-2.491zM5.864 2.658L16.802 8.99l-2.303 2.303-8.635-8.635z"/></svg>
+              </div>
               <span class="text-left leading-tight">
-                <span class="block text-[10px] font-semibold opacity-80">Coming soon on</span>
-                <span class="block text-sm font-extrabold">Google Play</span>
+                <span class="block text-[10px] font-semibold opacity-85">Coming soon on</span>
+                <span class="block text-sm font-extrabold tracking-tight">Google Play</span>
               </span>
             </button>
           </div>
@@ -1452,16 +1475,16 @@
         A little planning today can make your entire week easier. Join thousands taking the guesswork out of nutrition.
       </p>
 
-      <div class="mt-8 flex flex-wrap items-center justify-center gap-4">
+      <div class="mt-8 flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3.5 sm:gap-4 max-w-xs sm:max-w-none mx-auto">
         <a 
           href="#meal-planner" 
-          class="px-10 py-4 rounded-full bg-plum-600 hover:bg-plum-700 dark:bg-terracotta-400 dark:hover:bg-terracotta-500 text-ivory-100 dark:text-plum-950 font-bold text-sm shadow-xl shadow-plum-600/15 dark:shadow-terracotta-400/20 transition-all duration-200 transform hover:-translate-y-0.5"
+          class="w-full sm:w-auto min-w-[220px] px-8 py-4 rounded-full bg-plum-600 hover:bg-plum-700 dark:bg-terracotta-400 dark:hover:bg-terracotta-500 text-ivory-100 dark:text-plum-950 font-bold text-sm shadow-xl shadow-plum-600/15 dark:shadow-terracotta-400/20 border-2 border-transparent transition-all duration-200 transform hover:-translate-y-0.5 text-center flex items-center justify-center"
         >
           Start Planning
         </a>
         <a 
           href="#nutrition-profile" 
-          class="px-10 py-4 rounded-full border-2 border-plum-600/20 dark:border-ivory-100/20 text-plum-600 dark:text-ivory-100 hover:border-terracotta-400 hover:text-terracotta-500 font-bold text-sm transition"
+          class="w-full sm:w-auto min-w-[220px] px-8 py-4 rounded-full border-2 border-plum-600/20 dark:border-ivory-100/20 text-plum-600 dark:text-ivory-100 hover:border-terracotta-400 hover:text-terracotta-500 font-bold text-sm transition text-center flex items-center justify-center"
         >
           Calibrate Profile
         </a>
@@ -1812,7 +1835,7 @@
     id="back-to-top-btn" 
     type="button" 
     aria-label="Back to top"
-    class="fixed bottom-6 right-6 z-40 p-3 rounded-full bg-plum-600 text-ivory-100 dark:bg-terracotta-400 dark:text-plum-950 shadow-xl opacity-0 pointer-events-none transition-all duration-300 hover:scale-110 focus:outline-none"
+    class="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-30 p-2.5 sm:p-3 rounded-full bg-plum-600/90 text-ivory-100 dark:bg-terracotta-400/90 dark:text-plum-950 shadow-xl opacity-0 pointer-events-none transition-all duration-300 hover:scale-110 focus:outline-none backdrop-blur-sm"
   >
     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 10l7-7m0 0l7 7m-7-7v18" />

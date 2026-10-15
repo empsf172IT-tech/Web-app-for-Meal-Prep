@@ -995,45 +995,48 @@ function initGroceryList() {
 
           <div class="space-y-1.5">
             ${itemsInCat.map(item => `
-              <div class="group flex items-center justify-between p-2 rounded-xl hover:bg-ivory-200/50 dark:hover:bg-plum-900/40 transition">
-                <div class="flex items-center gap-3">
+              <div class="group flex items-center justify-between gap-3 p-2 rounded-xl hover:bg-ivory-200/50 dark:hover:bg-plum-900/40 transition">
+                <div class="flex items-center gap-2.5 min-w-0 flex-1">
                   <input 
                     type="checkbox" 
                     id="chk-${item.id}"
                     ${item.checked ? 'checked' : ''}
                     onchange="toggleGroceryItem('${item.id}')"
-                    class="w-4 h-4 rounded text-terracotta-500 focus:ring-terracotta-400"
+                    class="w-4 h-4 rounded text-terracotta-500 focus:ring-terracotta-400 shrink-0"
                   />
                   <label 
                     for="chk-${item.id}" 
-                    class="text-sm font-medium cursor-pointer transition select-none ${
+                    class="text-xs sm:text-sm font-medium cursor-pointer transition select-none truncate ${
                       item.checked 
                         ? 'line-through text-plum-300 dark:text-ivory-400' 
                         : 'text-plum-600 dark:text-ivory-100'
                     }"
+                    title="${item.name}"
                   >
                     ${item.name}
                   </label>
-                  <span class="text-xs text-plum-400 dark:text-ivory-400 bg-ivory-200/70 dark:bg-plum-800 px-2 py-0.5 rounded-md font-mono">
-                    ${item.quantity}
-                  </span>
                 </div>
 
-                <div class="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition">
-                  <button 
-                    onclick="editGroceryItem('${item.id}')"
-                    class="text-xs p-1 text-plum-400 hover:text-plum-600 dark:text-ivory-300 transition"
-                    title="Edit quantity"
-                  >
-                    ✏️
-                  </button>
-                  <button 
-                    onclick="deleteGroceryItem('${item.id}')"
-                    class="text-xs p-1 text-plum-400 hover:text-rose-500 transition"
-                    title="Remove item"
-                  >
-                    🗑️
-                  </button>
+                <div class="flex items-center gap-1.5 shrink-0">
+                  <span class="text-[10px] sm:text-xs text-plum-500 dark:text-ivory-300 bg-ivory-200/80 dark:bg-plum-800 px-2 py-0.5 rounded-md whitespace-nowrap font-medium">
+                    ${item.quantity}
+                  </span>
+                  <div class="flex items-center gap-0.5 sm:opacity-0 group-hover:opacity-100 transition">
+                    <button 
+                      onclick="editGroceryItem('${item.id}')"
+                      class="text-xs p-1 text-plum-400 hover:text-plum-600 dark:text-ivory-300 transition"
+                      title="Edit quantity"
+                    >
+                      ✏️
+                    </button>
+                    <button 
+                      onclick="deleteGroceryItem('${item.id}')"
+                      class="text-xs p-1 text-plum-400 hover:text-rose-500 transition"
+                      title="Remove item"
+                    >
+                      🗑️
+                    </button>
+                  </div>
                 </div>
               </div>
             `).join("")}
