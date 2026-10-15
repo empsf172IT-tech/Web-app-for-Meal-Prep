@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none">
+  <!-- Rounded Brand Container with Subtle Gradient -->
+  <defs>
+    <linearGradient id="nourishly-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#493447" />
+      <stop offset="100%" stop-color="#352434" />
+    </linearGradient>
+    <linearGradient id="terracotta-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#E2A995" />
+      <stop offset="100%" stop-color="#D78B70" />
+    </linearGradient>
+  </defs>
+
+  <!-- Squircle Emblem Badge -->
+  <rect width="48" height="48" rx="14" fill="url(#nourishly-bg)" />
+
+  <!-- Meal Prep Bowl (Solid soft tint + crisp outline) -->
+  <path d="M9 25C10 34 16.5 39 24 39C31.5 39 38 34 39 25H9Z" fill="#FAF7F0" fill-opacity="0.15" />
+  <path d="M9 25C10 34 16.5 39 24 39C31.5 39 38 34 39 25" stroke="#FAF7F0" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" />
+  <!-- Bowl Rim Line -->
+  <path d="M7 25H41" stroke="#FAF7F0" stroke-width="2.8" stroke-linecap="round" />
+
+  <!-- Left: Sleek Nutrition & Dining Fork -->
+  <!-- Fork Stem -->
+  <path d="M17 25V12" stroke="#FAF7F0" stroke-width="2.4" stroke-linecap="round" />
+  <!-- Fork Head / Tines -->
+  <path d="M13.5 12V7" stroke="#FAF7F0" stroke-width="2.2" stroke-linecap="round" />
+  <path d="M17 12V6" stroke="#FAF7F0" stroke-width="2.2" stroke-linecap="round" />
+  <path d="M20.5 12V7" stroke="#FAF7F0" stroke-width="2.2" stroke-linecap="round" />
+  <path d="M13.5 12C13.5 14.5 20.5 14.5 20.5 12" stroke="#FAF7F0" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
+
+  <!-- Right: Organic Sprout & Nutrition Leaf (Terracotta) -->
+  <!-- Leaf Main Body -->
+  <path d="M24 25C24 16.5 29 9 37 8C37 16.5 32 23.5 24 25Z" fill="url(#terracotta-grad)" stroke="#D78B70" stroke-width="2" stroke-linejoin="round" />
+  <!-- Leaf Delicate Inner Rib -->
+  <path d="M24 25C28 20.5 32.5 14.5 37 8" stroke="#FAF7F0" stroke-width="1.6" stroke-linecap="round" />
+  <!-- Small Secondary Leaf Sprout -->
+  <path d="M28 19C31 18 35 19 36 21C34 22.5 29.5 22 28 19Z" fill="#D78B70" stroke="#D78B70" stroke-width="1.2" stroke-linejoin="round" />
+
+  <!-- Golden Vitality Seed Drop in Bowl -->
+  <circle cx="24" cy="32" r="2" fill="#D78B70" />
+</svg>

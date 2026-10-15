@@ -1,0 +1,236 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+  --color-ivory: #FAF7F0;
+  --color-plum: #493447;
+  --color-plum-dark: #261A25;
+  --color-terracotta: #D78B70;
+  --color-terracotta-hover: #CB7456;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-family: 'Manrope', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Ensure sticky nav never covers section titles when scrolled or clicked */
+section[id] {
+  scroll-margin-top: 5.5rem;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #FAF7F0;
+}
+.dark ::-webkit-scrollbar-track {
+  background: #1A1219;
+}
+::-webkit-scrollbar-thumb {
+  background: #D78B70;
+  border-radius: 9999px;
+  border: 2px solid #FAF7F0;
+}
+.dark ::-webkit-scrollbar-thumb {
+  background: #60475E;
+  border: 2px solid #1A1219;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #CB7456;
+}
+
+/* Glassmorphism Classes */
+.glass-panel-light {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(73, 52, 71, 0.08);
+}
+
+.glass-panel-dark {
+  background: rgba(38, 26, 37, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(215, 139, 112, 0.15);
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(73, 52, 71, 0.08);
+  box-shadow: 0 10px 30px -10px rgba(73, 52, 71, 0.06);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.dark .glass-card {
+  background: rgba(43, 30, 42, 0.92);
+  border: 1px solid rgba(215, 139, 112, 0.14);
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.4);
+}
+
+.glass-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 35px -10px rgba(73, 52, 71, 0.12);
+  border-color: rgba(215, 139, 112, 0.35);
+}
+
+.dark .glass-card:hover {
+  box-shadow: 0 20px 35px -10px rgba(0, 0, 0, 0.6);
+  border-color: rgba(215, 139, 112, 0.35);
+}
+
+/* Subtle Animated Gradients */
+.hero-glow {
+  background: radial-gradient(circle at 50% 30%, rgba(215, 139, 112, 0.16) 0%, rgba(73, 52, 71, 0.04) 50%, transparent 80%);
+}
+
+.dark .hero-glow {
+  background: radial-gradient(circle at 50% 30%, rgba(215, 139, 112, 0.12) 0%, rgba(73, 52, 71, 0.2) 60%, transparent 80%);
+}
+
+/* Toast animations */
+@keyframes slideDownIn {
+  from {
+    transform: translate(-50%, -100%);
+    opacity: 0;
+  }
+  to {
+    transform: translate(-50%, 0);
+    opacity: 1;
+  }
+}
+
+.animate-toast {
+  animation: slideDownIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Modal animations */
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.modal-content-animated {
+  animation: modalFadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Interactive Checkbox Ripple */
+input[type="checkbox"] {
+  accent-color: #D78B70;
+  cursor: pointer;
+}
+
+/* Range input styling */
+input[type="range"] {
+  accent-color: #D78B70;
+}
+
+/* Active Nav Link Marker */
+.nav-link.active {
+  color: #D78B70 !important;
+  font-weight: 700;
+}
+
+.nav-link.active::after {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 2px;
+  background-color: #D78B70;
+  border-radius: 9999px;
+  margin-top: 4px;
+}
+
+/* Micro pulse animation */
+@keyframes subtlePulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.03);
+  }
+}
+
+.hover-subtle-pulse:hover {
+  animation: subtlePulse 2s infinite ease-in-out;
+}
+
+/* FAQ Accordion */
+.faq-panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.faq-panel.open {
+  grid-template-rows: 1fr;
+}
+
+.faq-panel > div {
+  overflow: hidden;
+  visibility: hidden;
+  transition: visibility 0s linear 0.3s;
+}
+
+.faq-panel.open > div {
+  visibility: visible;
+  transition-delay: 0s;
+}
+
+.faq-item.faq-open {
+  border-color: rgba(215, 139, 112, 0.5);
+}
+
+.faq-chevron {
+  transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+}
+
+.faq-item.faq-open .faq-chevron {
+  transform: rotate(180deg);
+  background-color: #D78B70;
+  color: #261A25;
+}
+
+/* Mobile app preview tabs */
+.phone-tab-btn {
+  color: #7E5B7A;
+  transition: color 0.2s ease;
+}
+
+.dark .phone-tab-btn {
+  color: #D9C5AF;
+}
+
+.phone-tab-btn.phone-tab-active {
+  color: #B55E40;
+}
+
+.dark .phone-tab-btn.phone-tab-active {
+  color: #D78B70;
+}
+
+.phone-tab-btn.phone-tab-active .phone-tab-dot {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .faq-panel,
+  .faq-chevron {
+    transition: none;
+  }
+}

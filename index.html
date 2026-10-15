@@ -1,0 +1,1825 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nourishly — Plan Better. Eat Brighter. | Premium Meal Prep & Nutrition Planner</title>
+  <meta name="description" content="Nourishly is a premium meal prep and nutrition planning platform. Curate weekly balanced meals, explore high-protein recipes, track macros, and streamline smart grocery shopping.">
+  <meta name="keywords" content="meal prep, nutrition planner, healthy recipes, macro tracker, weekly meal plan, grocery list, wellness tech">
+  <meta name="author" content="Nourishly Inc.">
+
+  <!-- Brand Favicon -->
+  <link rel="icon" type="image/svg+xml" href="assets/images/logo.svg">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            ivory: {
+              50: '#FDFBF7',
+              100: '#FAF7F0', // Brand Warm Ivory
+              200: '#F3EDE1',
+              300: '#E8DCCB',
+              400: '#D9C5AF',
+            },
+            plum: {
+              950: '#1A1219',
+              900: '#261A25',
+              800: '#352434',
+              700: '#402B3E',
+              600: '#493447', // Brand Deep Plum
+              500: '#5F445C',
+              400: '#7E5B7A',
+              300: '#A482A0',
+              200: '#CEB9CB',
+              100: '#E9E0E8',
+            },
+            terracotta: {
+              50: '#FAF2EE',
+              100: '#F5E3DB',
+              200: '#ECC6B7',
+              300: '#E2A995',
+              400: '#D78B70', // Brand Muted Terracotta
+              500: '#CA7556',
+              600: '#B55E40',
+              700: '#924A32',
+            }
+          },
+          fontFamily: {
+            sans: ['Manrope', 'system-ui', '-apple-system', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-ivory-100 text-plum-600 dark:bg-plum-950 dark:text-ivory-100 antialiased selection:bg-terracotta-400 selection:text-white transition-colors duration-300">
+
+  <!-- Toast Notification Container -->
+  <div id="toast-container" class="fixed top-5 left-1/2 -translate-x-1/2 z-50 flex flex-col gap-2 pointer-events-none"></div>
+
+  <!-- ========================================================================= -->
+  <!-- HEADER & NAVIGATION -->
+  <!-- ========================================================================= -->
+  <header class="sticky top-0 z-40 w-full backdrop-blur-xl bg-ivory-100/90 dark:bg-plum-950/90 border-b border-plum-600/10 dark:border-plum-800 transition-colors duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between gap-3">
+      
+      <!-- Brand Logo -->
+      <a href="#hero" class="flex items-center gap-2.5 sm:gap-3 group focus:outline-none focus:ring-2 focus:ring-terracotta-400 rounded-lg p-1 shrink-0" aria-label="Nourishly Home">
+        <!-- Distinctive Nourishly Meal Prep & Nutrition Emblem -->
+        <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl overflow-hidden shadow-md transition-transform duration-200 group-hover:scale-105 shrink-0">
+          <svg class="w-full h-full" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Nourishly meal prep bowl with fresh sprout and dining fork">
+            <defs>
+              <linearGradient id="header-logo-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#493447" />
+                <stop offset="100%" stop-color="#352434" />
+              </linearGradient>
+              <linearGradient id="header-terracotta-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#E2A995" />
+                <stop offset="100%" stop-color="#D78B70" />
+              </linearGradient>
+            </defs>
+            <rect width="48" height="48" rx="14" fill="url(#header-logo-bg)" />
+            <!-- Meal Prep Bowl (Solid soft tint + crisp rim) -->
+            <path d="M9 25C10 34 16.5 39 24 39C31.5 39 38 34 39 25H9Z" fill="#FAF7F0" fill-opacity="0.15" />
+            <path d="M9 25C10 34 16.5 39 24 39C31.5 39 38 34 39 25" stroke="#FAF7F0" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M7 25H41" stroke="#FAF7F0" stroke-width="2.8" stroke-linecap="round" />
+            <!-- Left: Sleek Nutrition & Dining Fork -->
+            <path d="M17 25V12" stroke="#FAF7F0" stroke-width="2.4" stroke-linecap="round" />
+            <path d="M13.5 12V7" stroke="#FAF7F0" stroke-width="2.2" stroke-linecap="round" />
+            <path d="M17 12V6" stroke="#FAF7F0" stroke-width="2.2" stroke-linecap="round" />
+            <path d="M20.5 12V7" stroke="#FAF7F0" stroke-width="2.2" stroke-linecap="round" />
+            <path d="M13.5 12C13.5 14.5 20.5 14.5 20.5 12" stroke="#FAF7F0" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
+            <!-- Right: Organic Sprout & Nutrition Leaf -->
+            <path d="M24 25C24 16.5 29 9 37 8C37 16.5 32 23.5 24 25Z" fill="url(#header-terracotta-grad)" stroke="#D78B70" stroke-width="2" stroke-linejoin="round" />
+            <path d="M24 25C28 20.5 32.5 14.5 37 8" stroke="#FAF7F0" stroke-width="1.6" stroke-linecap="round" />
+            <path d="M28 19C31 18 35 19 36 21C34 22.5 29.5 22 28 19Z" fill="#D78B70" stroke="#D78B70" stroke-width="1.2" stroke-linejoin="round" />
+            <circle cx="24" cy="32" r="2" fill="#D78B70" />
+          </svg>
+        </div>
+        <div class="leading-tight">
+          <span class="text-lg sm:text-xl font-extrabold tracking-tight text-plum-600 dark:text-ivory-100 block">Nourishly</span>
+          <span class="hidden sm:block text-[10px] uppercase tracking-wider font-semibold text-terracotta-500 dark:text-terracotta-400 -mt-0.5 whitespace-nowrap">Plan Better • Eat Brighter</span>
+        </div>
+      </a>
+
+      <!-- Desktop Nav with All Section Headings -->
+      <nav class="hidden lg:flex items-center gap-3 xl:gap-5 2xl:gap-6 text-xs xl:text-sm font-semibold text-plum-600 dark:text-ivory-200" aria-label="Main Navigation">
+        <a href="#hero" class="nav-link desktop-nav-link hover:text-terracotta-500 dark:hover:text-terracotta-300 transition whitespace-nowrap">Home</a>
+        <a href="#nutrition-overview" class="nav-link desktop-nav-link hover:text-terracotta-500 dark:hover:text-terracotta-300 transition whitespace-nowrap">Nutrition</a>
+        <a href="#meal-planner" class="nav-link desktop-nav-link hover:text-terracotta-500 dark:hover:text-terracotta-300 transition whitespace-nowrap">Meal Planner</a>
+        <a href="#recipes" class="nav-link desktop-nav-link hover:text-terracotta-500 dark:hover:text-terracotta-300 transition whitespace-nowrap">Recipes</a>
+        <a href="#grocery-list" class="nav-link desktop-nav-link hover:text-terracotta-500 dark:hover:text-terracotta-300 transition whitespace-nowrap">Grocery List</a>
+        <a href="#nutrition-profile" class="nav-link desktop-nav-link hover:text-terracotta-500 dark:hover:text-terracotta-300 transition whitespace-nowrap">Profile</a>
+        <a href="#meal-prep" class="nav-link desktop-nav-link hover:text-terracotta-500 dark:hover:text-terracotta-300 transition whitespace-nowrap">Meal Prep</a>
+        <a href="#nutrition-insights" class="nav-link desktop-nav-link hover:text-terracotta-500 dark:hover:text-terracotta-300 transition whitespace-nowrap">Insights</a>
+        <a href="#mobile-app" class="nav-link desktop-nav-link hover:text-terracotta-500 dark:hover:text-terracotta-300 transition whitespace-nowrap">Mobile App</a>
+        <a href="#faq" class="nav-link desktop-nav-link hover:text-terracotta-500 dark:hover:text-terracotta-300 transition whitespace-nowrap">FAQ</a>
+      </nav>
+
+      <!-- Right Header Actions (Clean, aligned, un-crammed) -->
+      <div class="flex items-center gap-2 sm:gap-3 shrink-0">
+        <!-- Theme Toggle -->
+        <button 
+          id="theme-toggle-btn" 
+          type="button" 
+          aria-label="Toggle Dark/Light Mode"
+          class="w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center rounded-xl sm:rounded-full bg-ivory-200 dark:bg-plum-900 text-plum-600 dark:text-terracotta-300 hover:bg-terracotta-100 dark:hover:bg-plum-800 transition shadow-sm focus:outline-none focus:ring-2 focus:ring-terracotta-400 shrink-0"
+        >
+          <!-- Sun icon (for dark mode) -->
+          <svg class="w-4 h-4 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+          </svg>
+          <!-- Moon icon (for light mode) -->
+          <svg class="w-4 h-4 block dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+          </svg>
+        </button>
+
+        <!-- Auth / Workspace State Container (hidden on mobile and tablet 768px, visible from lg: 1024px desktop up) -->
+        <div id="header-auth-container" class="hidden lg:flex items-center shrink-0">
+          <button 
+            onclick="openAuthModal('signin')"
+            class="px-4 py-2 text-xs font-bold rounded-full bg-plum-600 hover:bg-plum-700 dark:bg-terracotta-400 dark:hover:bg-terracotta-500 text-ivory-100 dark:text-plum-900 shadow-md transition-all duration-200 whitespace-nowrap"
+          >
+            Sign In / Demo
+          </button>
+        </div>
+
+        <!-- Mobile Hamburger Toggle (properly styled, square 36px, centered) -->
+        <button 
+          id="mobile-menu-btn" 
+          type="button" 
+          aria-expanded="false" 
+          aria-label="Toggle mobile menu"
+          class="lg:hidden w-9 h-9 flex items-center justify-center rounded-xl bg-ivory-200/60 dark:bg-plum-900/60 text-plum-600 dark:text-ivory-100 hover:bg-terracotta-100 dark:hover:bg-plum-800 transition focus:outline-none focus:ring-2 focus:ring-terracotta-400 shrink-0"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Mobile Navigation Drawer -->
+    <div id="mobile-menu-drawer" class="hidden lg:hidden border-b border-plum-600/10 dark:border-plum-800 bg-ivory-100/98 dark:bg-plum-950/98 px-5 py-5 space-y-4 shadow-xl">
+      <!-- Mobile Drawer Brand Header -->
+      <div class="flex items-center justify-between pb-3 border-b border-plum-600/10 dark:border-plum-800">
+        <div class="flex items-center gap-2.5">
+          <img src="assets/images/logo.svg" alt="Nourishly Logo" class="w-8 h-8 rounded-lg shadow-sm shrink-0" />
+          <div class="leading-tight">
+            <span class="font-extrabold text-sm text-plum-600 dark:text-ivory-100 block">Nourishly</span>
+            <span class="text-[9px] uppercase tracking-wider font-semibold text-terracotta-500 dark:text-terracotta-400">Meal Prep Planner</span>
+          </div>
+        </div>
+        <span class="text-[10px] font-bold text-plum-400 dark:text-ivory-400 bg-ivory-200 dark:bg-plum-900 px-2.5 py-1 rounded-full">Menu</span>
+      </div>
+
+      <!-- Mobile Auth Action Block -->
+      <div id="mobile-drawer-auth" class="pb-3 border-b border-plum-600/10 dark:border-plum-800">
+        <button 
+          onclick="openAuthModal('signin'); document.getElementById('mobile-menu-drawer').classList.add('hidden');"
+          class="w-full py-2.5 px-4 text-xs font-bold rounded-xl bg-plum-600 hover:bg-plum-700 dark:bg-terracotta-400 dark:hover:bg-terracotta-500 text-ivory-100 dark:text-plum-950 shadow-md transition flex items-center justify-center gap-2"
+        >
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"/></svg>
+          Sign In / Demo
+        </button>
+      </div>
+
+      <nav class="flex flex-col space-y-2.5 font-semibold text-sm">
+        <a href="#hero" class="mobile-nav-link text-plum-600 dark:text-ivory-100 hover:text-terracotta-500 py-1 flex items-center justify-between">
+          <span>Home</span> <span class="text-xs text-plum-400">→</span>
+        </a>
+        <a href="#nutrition-overview" class="mobile-nav-link text-plum-600 dark:text-ivory-100 hover:text-terracotta-500 py-1 flex items-center justify-between">
+          <span>Personal Nutrition</span> <span class="text-xs text-plum-400">→</span>
+        </a>
+        <a href="#meal-planner" class="mobile-nav-link text-plum-600 dark:text-ivory-100 hover:text-terracotta-500 py-1 flex items-center justify-between">
+          <span>Weekly Meal Planner</span> <span class="text-xs text-plum-400">→</span>
+        </a>
+        <a href="#recipes" class="mobile-nav-link text-plum-600 dark:text-ivory-100 hover:text-terracotta-500 py-1 flex items-center justify-between">
+          <span>Discover Recipes</span> <span class="text-xs text-plum-400">→</span>
+        </a>
+        <a href="#grocery-list" class="mobile-nav-link text-plum-600 dark:text-ivory-100 hover:text-terracotta-500 py-1 flex items-center justify-between">
+          <span>Smart Grocery List</span> <span class="text-xs text-plum-400">→</span>
+        </a>
+        <a href="#nutrition-profile" class="mobile-nav-link text-plum-600 dark:text-ivory-100 hover:text-terracotta-500 py-1 flex items-center justify-between">
+          <span>Nutrition Profile</span> <span class="text-xs text-plum-400">→</span>
+        </a>
+        <a href="#meal-prep" class="mobile-nav-link text-plum-600 dark:text-ivory-100 hover:text-terracotta-500 py-1 flex items-center justify-between">
+          <span>Meal Prep Guide</span> <span class="text-xs text-plum-400">→</span>
+        </a>
+        <a href="#nutrition-insights" class="mobile-nav-link text-plum-600 dark:text-ivory-100 hover:text-terracotta-500 py-1 flex items-center justify-between">
+          <span>Weekly Insights</span> <span class="text-xs text-plum-400">→</span>
+        </a>
+        <a href="#mobile-app" class="mobile-nav-link text-plum-600 dark:text-ivory-100 hover:text-terracotta-500 py-1 flex items-center justify-between">
+          <span>Mobile App</span> <span class="text-xs text-plum-400">→</span>
+        </a>
+        <a href="#faq" class="mobile-nav-link text-plum-600 dark:text-ivory-100 hover:text-terracotta-500 py-1 flex items-center justify-between">
+          <span>FAQ</span> <span class="text-xs text-plum-400">→</span>
+        </a>
+        <a href="#account-workspace" class="mobile-nav-link text-plum-600 dark:text-ivory-100 hover:text-terracotta-500 py-1 flex items-center justify-between">
+          <span>Account Workspace</span> <span class="text-xs text-plum-400">→</span>
+        </a>
+      </nav>
+      <div class="pt-3 border-t border-plum-600/10 dark:border-plum-800 flex items-center justify-between">
+        <span class="text-xs text-plum-400 dark:text-ivory-400">Theme Mode</span>
+        <button id="theme-toggle-mobile" class="px-3 py-1.5 text-xs font-bold rounded-lg bg-ivory-200 dark:bg-plum-900 text-plum-600 dark:text-ivory-100 hover:bg-terracotta-100 transition">
+          Switch Light/Dark
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========================================================================= -->
+  <!-- SECTION 1: PREMIUM HERO SECTION -->
+  <!-- ========================================================================= -->
+  <section id="hero" class="relative pt-12 pb-24 md:pt-20 md:pb-32 overflow-hidden hero-glow">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+        
+        <!-- Left Content -->
+        <div class="lg:col-span-7 space-y-6">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-terracotta-100/80 dark:bg-plum-900/80 border border-terracotta-200 dark:border-plum-700 text-terracotta-600 dark:text-terracotta-300 text-xs font-bold tracking-wide">
+            <span class="w-2 h-2 rounded-full bg-terracotta-500 animate-pulse"></span>
+            Modern Nutrition Intelligence & Meal Prep
+          </div>
+
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-plum-600 dark:text-ivory-100 leading-[1.12]">
+            Your Week, <br class="hidden sm:inline" />
+            <span class="text-terracotta-500 dark:text-terracotta-400 underline decoration-terracotta-300/40 decoration-wavy decoration-2">Beautifully Nourished.</span>
+          </h1>
+
+          <p class="text-base sm:text-lg text-plum-500 dark:text-ivory-300 max-w-xl leading-relaxed">
+            Plan balanced meals, discover recipes you love, and make every week a little healthier. Experience smart macro balance, automated grocery planning, and stress-free culinary batch prep.
+          </p>
+
+          <!-- CTAs -->
+          <div class="flex flex-wrap items-center gap-4 pt-2">
+            <a 
+              href="#meal-planner" 
+              class="px-8 py-3.5 rounded-full bg-plum-600 hover:bg-plum-700 dark:bg-terracotta-400 dark:hover:bg-terracotta-500 text-ivory-100 dark:text-plum-950 font-bold text-sm shadow-xl shadow-plum-600/10 dark:shadow-terracotta-400/10 transition-all duration-200 transform hover:-translate-y-0.5"
+            >
+              Plan My Week
+            </a>
+            <a 
+              href="#recipes" 
+              class="px-8 py-3.5 rounded-full border-2 border-plum-600/20 dark:border-ivory-100/20 text-plum-600 dark:text-ivory-100 hover:border-terracotta-400 hover:text-terracotta-500 font-bold text-sm transition-all duration-200"
+            >
+              Explore Recipes
+            </a>
+          </div>
+
+          <!-- Feature badges list -->
+          <div class="pt-6 grid grid-cols-3 gap-4 border-t border-plum-600/10 dark:border-plum-800">
+            <div>
+              <p class="text-2xl font-black text-plum-600 dark:text-terracotta-300">100%</p>
+              <p class="text-xs text-plum-400 dark:text-ivory-400 font-medium mt-0.5">Custom Macro Fit</p>
+            </div>
+            <div>
+              <p class="text-2xl font-black text-plum-600 dark:text-terracotta-300">45 Min</p>
+              <p class="text-xs text-plum-400 dark:text-ivory-400 font-medium mt-0.5">Sunday Batch Prep</p>
+            </div>
+            <div>
+              <p class="text-2xl font-black text-plum-600 dark:text-terracotta-300">0 Waste</p>
+              <p class="text-xs text-plum-400 dark:text-ivory-400 font-medium mt-0.5">Automated Grocery</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Hero Visual & Decorative Card -->
+        <div class="lg:col-span-5 relative">
+          <!-- Main Food Photography container -->
+          <div class="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white/60 dark:border-plum-800/80 aspect-[4/3] sm:aspect-[16/11]">
+            <img 
+              src="assets/images/hero_meal_prep.jpg" 
+              alt="Artisanal healthy meal prep containers arranged neatly with grilled salmon, tricolor quinoa, avocado, and vegetables" 
+              class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-700"
+              loading="eager"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-plum-950/60 via-transparent to-transparent"></div>
+          </div>
+
+          <!-- Floating Nutrition Summary Card -->
+          <div class="absolute -bottom-6 -left-4 sm:-bottom-8 sm:-left-6 glass-card rounded-2xl p-4 sm:p-5 shadow-2xl border border-plum-600/10 dark:border-terracotta-400/30 max-w-xs z-10 bg-white/95 dark:bg-plum-900/95">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs font-bold text-terracotta-600 dark:text-terracotta-400 uppercase tracking-wider">Sample Daily Fuel</span>
+              <span class="text-[11px] font-bold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-300">94% Target</span>
+            </div>
+            <p class="text-2xl font-extrabold text-plum-600 dark:text-ivory-100">2,150 <span class="text-xs font-normal text-plum-400 dark:text-ivory-300">kcal</span></p>
+            
+            <div class="grid grid-cols-3 gap-2 mt-3 pt-3 border-t border-plum-600/10 dark:border-plum-800 text-center">
+              <div>
+                <p class="text-[10px] uppercase font-bold text-plum-400 dark:text-ivory-400">Protein</p>
+                <p class="text-xs font-extrabold text-plum-600 dark:text-ivory-100">142g</p>
+              </div>
+              <div>
+                <p class="text-[10px] uppercase font-bold text-plum-400 dark:text-ivory-400">Carbs</p>
+                <p class="text-xs font-extrabold text-plum-600 dark:text-ivory-100">210g</p>
+              </div>
+              <div>
+                <p class="text-[10px] uppercase font-bold text-plum-400 dark:text-ivory-400">Fats</p>
+                <p class="text-xs font-extrabold text-plum-600 dark:text-ivory-100">65g</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Floating Top Decorative Badge -->
+          <div class="absolute -top-4 -right-2 sm:-top-5 sm:-right-4 glass-card px-4 py-2 rounded-2xl shadow-lg border border-plum-600/10 dark:border-terracotta-400/30 hidden sm:flex items-center gap-2 bg-white/90 dark:bg-plum-900/90">
+            <span class="text-terracotta-500 text-lg">🌿</span>
+            <div>
+              <p class="text-xs font-bold text-plum-600 dark:text-ivory-100">Clean Ingredients</p>
+              <p class="text-[10px] text-plum-400 dark:text-ivory-400">Zero ultra-processed food</p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- SECTION 2: PERSONALIZED NUTRITION OVERVIEW -->
+  <!-- ========================================================================= -->
+  <section id="nutrition-overview" class="py-20 bg-ivory-200/50 dark:bg-plum-900/30 border-y border-plum-600/10 dark:border-plum-800 transition-colors">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Section Header -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-wider text-terracotta-500 dark:text-terracotta-400">Daily Balance</span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-plum-600 dark:text-ivory-100 tracking-tight mt-1">
+            Personalized Nutrition Overview
+          </h2>
+          <p class="text-sm text-plum-500 dark:text-ivory-300 mt-2 max-w-xl">
+            Real-time tracking of calories, macronutrients, and hydration against your tailored metabolic baseline.
+          </p>
+        </div>
+
+        <!-- Sample Switcher Control -->
+        <div class="flex items-center gap-3">
+          <label for="nutrition-overview-mode" class="text-xs font-bold text-plum-500 dark:text-ivory-300 whitespace-nowrap">View Mode:</label>
+          <select 
+            id="nutrition-overview-mode" 
+            class="px-3.5 py-2 rounded-xl text-xs font-bold bg-white dark:bg-plum-900 border border-plum-600/15 dark:border-terracotta-400/20 text-plum-600 dark:text-ivory-100 focus:outline-none focus:ring-2 focus:ring-terracotta-400 shadow-sm"
+          >
+            <option value="today">Today (Active Progress)</option>
+            <option value="yesterday">Yesterday (Completed)</option>
+            <option value="average">7-Day Rolling Average</option>
+            <option value="training">High Activity Workout Day</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Dashboard Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        
+        <!-- Daily Calories Target Card -->
+        <div class="glass-card rounded-2xl p-6 border border-plum-600/10 dark:border-plum-800 bg-white/95 dark:bg-plum-900/70 shadow-sm">
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-xs font-bold text-plum-400 dark:text-ivory-400 uppercase tracking-wider">Calorie Intake</span>
+            <span class="p-2 rounded-xl bg-terracotta-100/70 dark:bg-plum-800 text-terracotta-600 dark:text-terracotta-300 text-sm">🔥</span>
+          </div>
+          <div class="flex items-baseline gap-2">
+            <span id="stat-calories-val" class="text-3xl font-black text-plum-600 dark:text-ivory-100">1,980</span>
+            <span id="stat-calories-target" class="text-xs font-bold text-plum-400 dark:text-ivory-400">/ 2,150 kcal</span>
+          </div>
+          <!-- Progress bar -->
+          <div class="w-full bg-ivory-200 dark:bg-plum-950 h-2.5 rounded-full overflow-hidden mt-4">
+            <div id="stat-calories-bar" class="h-full bg-terracotta-400 rounded-full transition-all duration-500" style="width: 92%;"></div>
+          </div>
+          <p id="stat-calories-pct" class="text-xs text-plum-500 dark:text-ivory-300 font-semibold mt-2 text-right">92% of daily goal</p>
+        </div>
+
+        <!-- Protein Progress Card -->
+        <div class="glass-card rounded-2xl p-6 border border-plum-600/10 dark:border-plum-800 bg-white/95 dark:bg-plum-900/70 shadow-sm">
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-xs font-bold text-plum-400 dark:text-ivory-400 uppercase tracking-wider">Protein Target</span>
+            <span class="p-2 rounded-xl bg-plum-100 dark:bg-plum-800 text-plum-600 dark:text-ivory-100 text-sm">🥩</span>
+          </div>
+          <div class="flex items-baseline gap-2">
+            <span id="stat-protein-val" class="text-3xl font-black text-plum-600 dark:text-ivory-100">132g</span>
+            <span id="stat-protein-target" class="text-xs font-bold text-plum-400 dark:text-ivory-400">/ 140g</span>
+          </div>
+          <div class="w-full bg-ivory-200 dark:bg-plum-950 h-2.5 rounded-full overflow-hidden mt-4">
+            <div id="stat-protein-bar" class="h-full bg-plum-600 dark:bg-terracotta-300 rounded-full transition-all duration-500" style="width: 94%;"></div>
+          </div>
+          <p class="text-xs text-plum-500 dark:text-ivory-300 font-semibold mt-2 text-right">Muscle synthesis & repair</p>
+        </div>
+
+        <!-- Carbs & Fat Card -->
+        <div class="glass-card rounded-2xl p-6 border border-plum-600/10 dark:border-plum-800 bg-white/95 dark:bg-plum-900/70 shadow-sm">
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-xs font-bold text-plum-400 dark:text-ivory-400 uppercase tracking-wider">Carbs & Healthy Fats</span>
+            <span class="p-2 rounded-xl bg-amber-100 dark:bg-plum-800 text-amber-700 dark:text-amber-300 text-sm">🥑</span>
+          </div>
+          <div class="space-y-3">
+            <div>
+              <div class="flex justify-between text-xs font-bold mb-1">
+                <span class="text-plum-600 dark:text-ivory-200">Carbs: <span id="stat-carbs-val">195g</span> <span id="stat-carbs-target" class="text-plum-400 text-[10px]">/ 210g</span></span>
+              </div>
+              <div class="w-full bg-ivory-200 dark:bg-plum-950 h-2 rounded-full overflow-hidden">
+                <div id="stat-carbs-bar" class="h-full bg-amber-500 rounded-full transition-all duration-500" style="width: 93%;"></div>
+              </div>
+            </div>
+            <div>
+              <div class="flex justify-between text-xs font-bold mb-1">
+                <span class="text-plum-600 dark:text-ivory-200">Fats: <span id="stat-fat-val">58g</span> <span id="stat-fat-target" class="text-plum-400 text-[10px]">/ 65g</span></span>
+              </div>
+              <div class="w-full bg-ivory-200 dark:bg-plum-950 h-2 rounded-full overflow-hidden">
+                <div id="stat-fat-bar" class="h-full bg-emerald-500 rounded-full transition-all duration-500" style="width: 89%;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Water Intake Tracker -->
+        <div class="glass-card rounded-2xl p-6 border border-plum-600/10 dark:border-plum-800 bg-white/95 dark:bg-plum-900/70 shadow-sm flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-xs font-bold text-plum-400 dark:text-ivory-400 uppercase tracking-wider">Hydration Level</span>
+              <span class="p-2 rounded-xl bg-sky-100 dark:bg-plum-800 text-sky-600 dark:text-sky-300 text-sm">💧</span>
+            </div>
+            <div class="flex items-baseline gap-2">
+              <span id="water-current-val" class="text-3xl font-black text-plum-600 dark:text-ivory-100">1.75 L</span>
+              <span class="text-xs font-bold text-plum-400 dark:text-ivory-400">/ <span id="water-target-val">2.5 L</span> target</span>
+            </div>
+            <div class="w-full bg-ivory-200 dark:bg-plum-950 h-2.5 rounded-full overflow-hidden mt-4">
+              <div id="water-progress-bar" class="h-full bg-sky-500 rounded-full transition-all duration-500" style="width: 70%;"></div>
+            </div>
+            <p id="water-pct-label" class="text-xs text-plum-500 dark:text-ivory-300 font-semibold mt-2 text-right">70% logged</p>
+          </div>
+
+          <div class="flex gap-2 mt-4 pt-3 border-t border-plum-600/10 dark:border-plum-800">
+            <button 
+              id="water-add-btn" 
+              type="button"
+              class="flex-1 py-1.5 px-3 text-xs font-bold rounded-lg bg-sky-50 dark:bg-sky-950 text-sky-700 dark:text-sky-200 border border-sky-200 dark:border-sky-800 hover:bg-sky-100 transition"
+            >
+              + 250ml
+            </button>
+            <button 
+              id="water-reset-btn" 
+              type="button"
+              class="py-1.5 px-3 text-xs font-bold rounded-lg text-plum-400 hover:text-plum-600 dark:text-ivory-400 transition"
+              title="Reset tracker"
+            >
+              Reset
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- SECTION 3: WEEKLY MEAL PLANNER -->
+  <!-- ========================================================================= -->
+  <section id="meal-planner" class="py-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Planner Header & Progress Summary -->
+      <div class="flex flex-col lg:flex-row lg:items-end justify-between mb-10 gap-6">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-wider text-terracotta-500 dark:text-terracotta-400">Core Feature</span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-plum-600 dark:text-ivory-100 tracking-tight mt-1">
+            Weekly Meal Planner
+          </h2>
+          <p class="text-sm text-plum-500 dark:text-ivory-300 mt-2 max-w-xl">
+            Select any day to customize meals, replace dishes with alternative recipes, and instantly view daily macro tallies.
+          </p>
+        </div>
+
+        <!-- Weekly Completion Indicator & Badges -->
+        <div class="glass-card rounded-2xl p-4 border border-plum-600/10 dark:border-plum-800 bg-white/90 dark:bg-plum-900/60 flex flex-col sm:flex-row items-center gap-4">
+          <div class="text-left w-full sm:w-auto">
+            <span class="text-xs font-bold text-plum-400 dark:text-ivory-400 uppercase tracking-wider">Week Completion</span>
+            <p id="weekly-completion-text" class="text-sm font-extrabold text-plum-600 dark:text-ivory-100">28/28 Meals Planned (100%)</p>
+            <div class="w-48 bg-ivory-200 dark:bg-plum-950 h-2 rounded-full overflow-hidden mt-1.5">
+              <div id="weekly-completion-meter" class="h-full bg-terracotta-400 rounded-full transition-all duration-300" style="width: 100%;"></div>
+            </div>
+          </div>
+          <div class="h-8 w-px bg-plum-600/10 dark:bg-plum-700 hidden sm:block"></div>
+          <div class="text-left w-full sm:w-auto flex flex-col">
+            <span class="text-xs font-bold text-plum-400 dark:text-ivory-400 uppercase tracking-wider">Day Calories</span>
+            <span id="planner-daily-calories" class="text-sm font-black text-terracotta-600 dark:text-terracotta-400">2,150 kcal planned</span>
+            <span id="planner-daily-protein" class="text-[11px] text-plum-500 dark:text-ivory-300 font-medium">142g protein</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Monday - Sunday Tabs -->
+      <div class="flex items-center gap-2 overflow-x-auto pb-4 mb-8 scrollbar-none" id="planner-day-tabs">
+        <!-- Injected via JavaScript -->
+      </div>
+
+      <!-- 4 Meal Slots Grid (Breakfast, Lunch, Dinner, Snack) -->
+      <div id="planner-slots-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- Injected via JavaScript -->
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- SECTION 4: DISCOVER HEALTHY RECIPES -->
+  <!-- ========================================================================= -->
+  <section id="recipes" class="py-24 bg-ivory-200/50 dark:bg-plum-900/30 border-t border-plum-600/10 dark:border-plum-800 transition-colors">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Section Header -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-6">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-wider text-terracotta-500 dark:text-terracotta-400">Curated Culinary Library</span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-plum-600 dark:text-ivory-100 tracking-tight mt-1">
+            Discover Healthy Recipes
+          </h2>
+          <p class="text-sm text-plum-500 dark:text-ivory-300 mt-2 max-w-xl">
+            Nutrient-dense, chef-crafted recipes designed specifically for batch preparation and balanced metabolic health.
+          </p>
+        </div>
+
+        <!-- Search Bar -->
+        <div class="w-full md:w-72 relative">
+          <input 
+            type="text" 
+            id="recipes-search" 
+            placeholder="Search salmon, avocado, vegan..."
+            class="w-full pl-10 pr-4 py-2.5 rounded-full text-xs font-medium bg-white dark:bg-plum-900 border border-plum-600/15 dark:border-terracotta-400/20 text-plum-600 dark:text-ivory-100 placeholder-plum-400 focus:outline-none focus:ring-2 focus:ring-terracotta-400 shadow-sm"
+          />
+          <svg class="w-4 h-4 text-plum-400 absolute left-3.5 top-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Category Filter Buttons -->
+      <div class="flex items-center gap-2 overflow-x-auto pb-4 mb-8">
+        <button data-category="All" class="recipe-filter-btn px-4 py-2 text-xs font-bold rounded-full bg-plum-600 text-ivory-100 dark:bg-terracotta-400 dark:text-plum-900 transition">All Recipes</button>
+        <button data-category="High-Protein" class="recipe-filter-btn px-4 py-2 text-xs font-bold rounded-full bg-ivory-200 dark:bg-plum-900/50 text-plum-600 dark:text-ivory-200 hover:bg-terracotta-100 transition">High-Protein</button>
+        <button data-category="Vegetarian" class="recipe-filter-btn px-4 py-2 text-xs font-bold rounded-full bg-ivory-200 dark:bg-plum-900/50 text-plum-600 dark:text-ivory-200 hover:bg-terracotta-100 transition">Vegetarian</button>
+        <button data-category="Breakfast" class="recipe-filter-btn px-4 py-2 text-xs font-bold rounded-full bg-ivory-200 dark:bg-plum-900/50 text-plum-600 dark:text-ivory-200 hover:bg-terracotta-100 transition">Quick Breakfasts</button>
+        <button data-category="Lunch" class="recipe-filter-btn px-4 py-2 text-xs font-bold rounded-full bg-ivory-200 dark:bg-plum-900/50 text-plum-600 dark:text-ivory-200 hover:bg-terracotta-100 transition">Healthy Lunches</button>
+        <button data-category="Dinner" class="recipe-filter-btn px-4 py-2 text-xs font-bold rounded-full bg-ivory-200 dark:bg-plum-900/50 text-plum-600 dark:text-ivory-200 hover:bg-terracotta-100 transition">Easy Dinners</button>
+        <button data-category="Snack" class="recipe-filter-btn px-4 py-2 text-xs font-bold rounded-full bg-ivory-200 dark:bg-plum-900/50 text-plum-600 dark:text-ivory-200 hover:bg-terracotta-100 transition">Nutritious Snacks</button>
+      </div>
+
+      <!-- Recipes Grid -->
+      <div id="recipes-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Rendered via JavaScript -->
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- SECTION 5: SMART GROCERY LIST -->
+  <!-- ========================================================================= -->
+  <section id="grocery-list" class="py-24 border-t border-plum-600/10 dark:border-plum-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+        
+        <!-- Left Description & Controls -->
+        <div class="lg:col-span-5 space-y-6">
+          <span class="text-xs font-bold uppercase tracking-wider text-terracotta-500 dark:text-terracotta-400">Zero Food Waste</span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-plum-600 dark:text-ivory-100 tracking-tight">
+            Smart Grocery List
+          </h2>
+          <p class="text-sm text-plum-500 dark:text-ivory-300 leading-relaxed">
+            Automatically synthesizes every ingredient from your weekly plan into a consolidated, categorized aisle checklist. Check items off in the supermarket, add custom essentials, and stay on budget.
+          </p>
+
+          <!-- Shopping Progress Meter Card -->
+          <div class="glass-card rounded-2xl p-5 border border-plum-600/10 dark:border-plum-800 bg-white/90 dark:bg-plum-900/70">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs font-bold text-plum-400 dark:text-ivory-400 uppercase tracking-wider">Aisle Progress</span>
+              <span id="grocery-progress-text" class="text-xs font-bold text-terracotta-600 dark:text-terracotta-400">7 of 14 items picked (50%)</span>
+            </div>
+            <div class="w-full bg-ivory-200 dark:bg-plum-950 h-2.5 rounded-full overflow-hidden">
+              <div id="grocery-progress-bar" class="h-full bg-terracotta-400 rounded-full transition-all duration-300" style="width: 50%;"></div>
+            </div>
+            <div class="mt-4 flex gap-3">
+              <button 
+                id="grocery-regenerate-btn" 
+                class="flex-1 py-2 px-4 rounded-xl text-xs font-bold bg-plum-600 text-ivory-100 hover:bg-plum-700 dark:bg-terracotta-400 dark:hover:bg-terracotta-500 dark:text-plum-950 transition flex items-center justify-center gap-1.5"
+              >
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+                Sync with Active Meal Plan
+              </button>
+            </div>
+          </div>
+
+          <!-- Add Item Form -->
+          <form id="grocery-add-form" class="glass-card rounded-2xl p-5 border border-plum-600/10 dark:border-plum-800 bg-white/90 dark:bg-plum-900/70 space-y-3">
+            <h4 class="text-xs font-bold uppercase tracking-wider text-plum-600 dark:text-ivory-100">Add Custom Item</h4>
+            <div class="grid grid-cols-2 gap-2">
+              <input 
+                type="text" 
+                id="grocery-item-name" 
+                placeholder="Item name (e.g. Olive Oil)" 
+                required 
+                class="col-span-2 px-3 py-2 text-xs rounded-xl bg-ivory-100 dark:bg-plum-950 border border-plum-600/10 dark:border-plum-800 text-plum-600 dark:text-ivory-100 focus:outline-none focus:ring-2 focus:ring-terracotta-400"
+              />
+              <input 
+                type="text" 
+                id="grocery-item-qty" 
+                placeholder="Qty (e.g. 2 bottles)" 
+                class="px-3 py-2 text-xs rounded-xl bg-ivory-100 dark:bg-plum-950 border border-plum-600/10 dark:border-plum-800 text-plum-600 dark:text-ivory-100 focus:outline-none focus:ring-2 focus:ring-terracotta-400"
+              />
+              <select 
+                id="grocery-item-cat" 
+                class="px-3 py-2 text-xs rounded-xl bg-ivory-100 dark:bg-plum-950 border border-plum-600/10 dark:border-plum-800 text-plum-600 dark:text-ivory-100 focus:outline-none focus:ring-2 focus:ring-terracotta-400 font-medium"
+              >
+                <option value="Fresh Produce">Fresh Produce</option>
+                <option value="Proteins">Proteins & Dairy</option>
+                <option value="Grains & Pantry">Grains & Pantry</option>
+              </select>
+            </div>
+            <button 
+              type="submit" 
+              class="w-full py-2 text-xs font-bold rounded-xl bg-ivory-200 dark:bg-plum-800 text-plum-600 dark:text-ivory-100 hover:bg-terracotta-100 dark:hover:bg-plum-700 transition"
+            >
+              + Add to Shopping List
+            </button>
+          </form>
+
+        </div>
+
+        <!-- Right Categorized Interactive List -->
+        <div class="lg:col-span-7 glass-card rounded-3xl p-6 sm:p-8 border border-plum-600/10 dark:border-plum-800 bg-white/95 dark:bg-plum-900/80 shadow-md">
+          <div id="grocery-items-container">
+            <!-- Categorized list injected by JavaScript -->
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- SECTION 6: BUILD YOUR NUTRITION PROFILE -->
+  <!-- ========================================================================= -->
+  <section id="nutrition-profile" class="py-20 lg:py-24 bg-ivory-200/50 dark:bg-plum-900/30 border-t border-plum-600/10 dark:border-plum-800 transition-colors scroll-mt-24">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center mb-12">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-terracotta-100 dark:bg-plum-800 border border-terracotta-200 dark:border-plum-700 text-terracotta-600 dark:text-terracotta-300 text-xs font-bold uppercase tracking-wider mb-3">
+          <span>⚙️</span> Section 06 · Nutrition Profile
+        </div>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-plum-600 dark:text-ivory-100 tracking-tight">
+          Build Your Nutrition Profile
+        </h2>
+        <p class="text-sm text-plum-500 dark:text-ivory-300 mt-2 max-w-lg mx-auto leading-relaxed">
+          Calibrate your metabolic blueprint. Select dietary preferences, allergies, activity levels, and wellness goals.
+        </p>
+      </div>
+
+      <!-- Interactive Profile Form -->
+      <form id="nutrition-profile-form" class="glass-card rounded-3xl p-6 sm:p-10 border border-plum-600/10 dark:border-plum-800 bg-white/95 dark:bg-plum-900/80 shadow-lg space-y-8">
+        
+        <!-- Dietary Preference Selection -->
+        <div>
+          <label class="block text-xs font-bold uppercase tracking-wider text-plum-600 dark:text-ivory-100 mb-3">
+            Primary Dietary Framework
+          </label>
+          <div class="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
+            <button type="button" data-diet="Balanced" class="profile-diet-btn px-4 py-2.5 text-xs font-bold rounded-xl bg-plum-600 text-ivory-100 dark:bg-terracotta-400 dark:text-plum-900 transition text-center shadow-sm">Balanced Whole-Food</button>
+            <button type="button" data-diet="High-Protein" class="profile-diet-btn px-4 py-2.5 text-xs font-bold rounded-xl bg-ivory-200 dark:bg-plum-900/50 text-plum-600 dark:text-ivory-200 hover:bg-terracotta-100 transition text-center">High-Protein Fitness</button>
+            <button type="button" data-diet="Vegetarian" class="profile-diet-btn px-4 py-2.5 text-xs font-bold rounded-xl bg-ivory-200 dark:bg-plum-900/50 text-plum-600 dark:text-ivory-200 hover:bg-terracotta-100 transition text-center">Plant-Rich Vegetarian</button>
+            <button type="button" data-diet="Vegan" class="profile-diet-btn px-4 py-2.5 text-xs font-bold rounded-xl bg-ivory-200 dark:bg-plum-900/50 text-plum-600 dark:text-ivory-200 hover:bg-terracotta-100 transition text-center">100% Plant-Based</button>
+            <button type="button" data-diet="Pescatarian" class="profile-diet-btn px-4 py-2.5 text-xs font-bold rounded-xl bg-ivory-200 dark:bg-plum-900/50 text-plum-600 dark:text-ivory-200 hover:bg-terracotta-100 transition text-center">Mediterranean / Pesco</button>
+            <button type="button" data-diet="Keto" class="profile-diet-btn px-4 py-2.5 text-xs font-bold rounded-xl bg-ivory-200 dark:bg-plum-900/50 text-plum-600 dark:text-ivory-200 hover:bg-terracotta-100 transition text-center">Low-Carb / Keto</button>
+          </div>
+        </div>
+
+        <!-- Food Allergies & Exclusions -->
+        <div>
+          <label class="block text-xs font-bold uppercase tracking-wider text-plum-600 dark:text-ivory-100 mb-3">
+            Allergies & Sensitivities to Exclude
+          </label>
+          <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+            <label class="flex items-center gap-2.5 text-xs text-plum-600 dark:text-ivory-200 font-medium cursor-pointer">
+              <input type="checkbox" name="allergies" value="Dairy" class="w-4 h-4 rounded text-terracotta-500">
+              <span>Dairy & Lactose</span>
+            </label>
+            <label class="flex items-center gap-2.5 text-xs text-plum-600 dark:text-ivory-200 font-medium cursor-pointer">
+              <input type="checkbox" name="allergies" value="Gluten" class="w-4 h-4 rounded text-terracotta-500">
+              <span>Gluten & Wheat</span>
+            </label>
+            <label class="flex items-center gap-2.5 text-xs text-plum-600 dark:text-ivory-200 font-medium cursor-pointer">
+              <input type="checkbox" name="allergies" value="Nuts" class="w-4 h-4 rounded text-terracotta-500">
+              <span>Tree Nuts & Peanuts</span>
+            </label>
+            <label class="flex items-center gap-2.5 text-xs text-plum-600 dark:text-ivory-200 font-medium cursor-pointer">
+              <input type="checkbox" name="allergies" value="Shellfish" checked class="w-4 h-4 rounded text-terracotta-500">
+              <span>Shellfish</span>
+            </label>
+            <label class="flex items-center gap-2.5 text-xs text-plum-600 dark:text-ivory-200 font-medium cursor-pointer">
+              <input type="checkbox" name="allergies" value="Soy" class="w-4 h-4 rounded text-terracotta-500">
+              <span>Soy Products</span>
+            </label>
+            <label class="flex items-center gap-2.5 text-xs text-plum-600 dark:text-ivory-200 font-medium cursor-pointer">
+              <input type="checkbox" name="allergies" value="Sugar" class="w-4 h-4 rounded text-terracotta-500">
+              <span>Refined Sugars</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Activity & Goals Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-2">
+          <div>
+            <label for="profile-activity" class="block text-xs font-bold uppercase tracking-wider text-plum-600 dark:text-ivory-100 mb-2">
+              Weekly Activity Level
+            </label>
+            <select id="profile-activity" class="w-full px-4 py-2.5 rounded-xl text-xs font-semibold bg-ivory-100 dark:bg-plum-950 border border-plum-600/10 dark:border-plum-800 text-plum-600 dark:text-ivory-100 focus:outline-none focus:ring-2 focus:ring-terracotta-400">
+              <option value="sedentary">Sedentary (Desk work, light walks)</option>
+              <option value="moderate" selected>Moderately Active (3-4 workouts/wk)</option>
+              <option value="active">Active (5+ strength/cardio sessions)</option>
+              <option value="athlete">High-Performance Athlete</option>
+            </select>
+          </div>
+          <div>
+            <label for="profile-goal" class="block text-xs font-bold uppercase tracking-wider text-plum-600 dark:text-ivory-100 mb-2">
+              Primary Nutrition Goal
+            </label>
+            <select id="profile-goal" class="w-full px-4 py-2.5 rounded-xl text-xs font-semibold bg-ivory-100 dark:bg-plum-950 border border-plum-600/10 dark:border-plum-800 text-plum-600 dark:text-ivory-100 focus:outline-none focus:ring-2 focus:ring-terracotta-400">
+              <option value="maintain" selected>Maintain Healthy Vitality & Longevity</option>
+              <option value="muscle-gain">Lean Muscle Gain (+Surplus)</option>
+              <option value="weight-loss">Healthy Fat Loss (-Deficit)</option>
+              <option value="energy">Sustained Daily Energy & Focus</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Live Target Preview Banner -->
+        <div class="p-4 rounded-2xl bg-terracotta-50 dark:bg-plum-950/70 border border-terracotta-200/50 dark:border-plum-800 flex items-center justify-between">
+          <div>
+            <p class="text-xs font-bold text-terracotta-600 dark:text-terracotta-400">Calculated Daily Target:</p>
+            <p class="text-lg font-black text-plum-600 dark:text-ivory-100">
+              <span id="profile-calculated-calories">2,150 kcal</span> 
+              <span class="text-xs font-normal text-plum-400 dark:text-ivory-400">• Protein: <span id="profile-calculated-protein" class="font-bold text-plum-600 dark:text-ivory-100">140g</span></span>
+            </p>
+          </div>
+          <button 
+            type="submit" 
+            class="px-6 py-3 rounded-full bg-plum-600 hover:bg-plum-700 dark:bg-terracotta-400 dark:hover:bg-terracotta-500 text-ivory-100 dark:text-plum-950 font-bold text-xs shadow-md transition transform hover:-translate-y-0.5"
+          >
+            Personalize My Plan
+          </button>
+        </div>
+
+        <!-- Medical Disclaimer -->
+        <p class="text-[11px] text-plum-400 dark:text-ivory-400 text-center leading-normal">
+          * Disclaimer: Nourishly provides algorithmic nutrition recommendations based on general macronutrient science. This is not medical diagnosis or clinical dietetics advice. Please consult your physician for clinical conditions.
+        </p>
+
+      </form>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- SECTION 7: MEAL PREP MADE SIMPLE -->
+  <!-- ========================================================================= -->
+  <section id="meal-prep" class="py-20 lg:py-24 border-t border-plum-600/10 dark:border-plum-800 scroll-mt-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Section Header -->
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-terracotta-100 dark:bg-plum-800 border border-terracotta-200 dark:border-plum-700 text-terracotta-600 dark:text-terracotta-300 text-xs font-bold uppercase tracking-wider mb-3">
+          <span>🥗</span> Section 07 · Meal Prep Guide
+        </div>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-plum-600 dark:text-ivory-100 tracking-tight">
+          Meal Prep Made Simple
+        </h2>
+        <p class="text-sm text-plum-500 dark:text-ivory-300 mt-2 leading-relaxed">
+          How to turn 45 minutes on Sunday into a week of delicious, nourishing lunches and effortless dinners.
+        </p>
+      </div>
+
+      <!-- 3-Step Visual Workflow Header -->
+      <div class="mb-4 flex items-center justify-between border-b border-plum-600/10 dark:border-plum-800 pb-2.5">
+        <div class="flex items-center gap-2">
+          <span class="w-2.5 h-2.5 rounded-full bg-terracotta-400"></span>
+          <h3 class="text-xs font-extrabold uppercase tracking-wider text-plum-600 dark:text-ivory-100">
+            3-Step Sunday Batch Workflow
+          </h3>
+        </div>
+        <span class="text-[11px] font-bold text-terracotta-600 dark:text-terracotta-400">45-Minute Prep Routine</span>
+      </div>
+
+      <!-- 3-Step Visual Workflow Cards -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+        
+        <!-- Step 1 -->
+        <div class="glass-card rounded-3xl p-6 border border-plum-600/10 dark:border-plum-800 bg-white/90 dark:bg-plum-900/60 relative flex flex-col justify-between">
+          <div>
+            <div class="w-12 h-12 rounded-2xl bg-terracotta-100 dark:bg-plum-800 text-terracotta-600 dark:text-terracotta-300 font-black text-xl flex items-center justify-center mb-6 shadow-sm">
+              01
+            </div>
+            <h4 class="text-lg font-bold text-plum-600 dark:text-ivory-100 mb-2">Plan Your Meals</h4>
+            <p class="text-xs text-plum-500 dark:text-ivory-300 leading-relaxed">
+              Design your Monday-to-Sunday schedule with your exact macro allocations in under five minutes. No guesswork.
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-plum-600/10 dark:border-plum-800 text-[11px] font-bold text-terracotta-600 dark:text-terracotta-400">
+            5 Min Calibration →
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="glass-card rounded-3xl p-6 border border-plum-600/10 dark:border-plum-800 bg-white/90 dark:bg-plum-900/60 relative flex flex-col justify-between">
+          <div>
+            <div class="w-12 h-12 rounded-2xl bg-plum-100 dark:bg-plum-800 text-plum-600 dark:text-ivory-100 font-black text-xl flex items-center justify-center mb-6 shadow-sm">
+              02
+            </div>
+            <h4 class="text-lg font-bold text-plum-600 dark:text-ivory-100 mb-2">Batch Cook in Minutes</h4>
+            <p class="text-xs text-plum-500 dark:text-ivory-300 leading-relaxed">
+              Simultaneously roast root vegetables, simmer grains in aromatics, and grill lean proteins in generous batches.
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-plum-600/10 dark:border-plum-800 text-[11px] font-bold text-plum-600 dark:text-ivory-200">
+            45 Min Sunday Rhythm →
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="glass-card rounded-3xl p-6 border border-plum-600/10 dark:border-plum-800 bg-white/90 dark:bg-plum-900/60 relative flex flex-col justify-between">
+          <div>
+            <div class="w-12 h-12 rounded-2xl bg-emerald-100 dark:bg-plum-800 text-emerald-700 dark:text-emerald-300 font-black text-xl flex items-center justify-center mb-6 shadow-sm">
+              03
+            </div>
+            <h4 class="text-lg font-bold text-plum-600 dark:text-ivory-100 mb-2">Store, Organize & Enjoy</h4>
+            <p class="text-xs text-plum-500 dark:text-ivory-300 leading-relaxed">
+              Pack into airtight glass bento containers. Enjoy fresh, crisp, restaurant-grade nourishment every single day.
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-plum-600/10 dark:border-plum-800 text-[11px] font-bold text-emerald-600 dark:text-emerald-400">
+            Zero Midweek Stress →
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Prep Photography & Interactive Checklist Grid -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+        
+        <!-- Workflow Photo -->
+        <div class="lg:col-span-6 rounded-3xl overflow-hidden shadow-xl border-2 border-white dark:border-plum-800 aspect-[4/3]">
+          <img 
+            src="assets/images/meal_prep_steps.jpg" 
+            alt="Person chopping colorful vegetables and organizing glass meal prep bento boxes in a bright modern kitchen" 
+            class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-700"
+            loading="lazy"
+          />
+        </div>
+
+        <!-- Interactive Sunday Prep Checklist -->
+        <div class="lg:col-span-6 glass-card rounded-3xl p-6 sm:p-8 border border-plum-600/10 dark:border-plum-800 bg-white/95 dark:bg-plum-900/80 shadow-md">
+          <div class="flex items-center justify-between mb-4 pb-2 border-b border-plum-600/10 dark:border-plum-800">
+            <div>
+              <h4 class="font-extrabold text-plum-600 dark:text-ivory-100 text-lg">Sunday Prep Checklist</h4>
+              <p class="text-xs text-plum-400 dark:text-ivory-400 mt-0.5">Interactive batch checklist</p>
+            </div>
+            <div class="text-right">
+              <span id="prep-progress-text" class="text-xs font-bold text-terracotta-600 dark:text-terracotta-400">4/7 Tasks Done (57%)</span>
+              <div class="w-32 bg-ivory-200 dark:bg-plum-950 h-2 rounded-full overflow-hidden mt-1">
+                <div id="prep-progress-meter" class="h-full bg-terracotta-400 rounded-full transition-all duration-300" style="width: 57%;"></div>
+              </div>
+            </div>
+          </div>
+
+          <div id="prep-checklist-container" class="space-y-2.5">
+            <!-- Rendered via JavaScript -->
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- SECTION 8: NUTRITION INSIGHTS & PROGRESS -->
+  <!-- ========================================================================= -->
+  <section id="nutrition-insights" class="py-24 bg-ivory-200/50 dark:bg-plum-900/30 border-t border-plum-600/10 dark:border-plum-800 transition-colors">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Section Header -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-wider text-terracotta-500 dark:text-terracotta-400">Weekly Analytics</span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-plum-600 dark:text-ivory-100 tracking-tight mt-1">
+            Nutrition Insights & Progress
+          </h2>
+          <p class="text-sm text-plum-500 dark:text-ivory-300 mt-2 max-w-xl">
+            Visualize your macronutrient distribution, weekly calorie consistency, and prep adherence at a glance.
+          </p>
+        </div>
+
+        <!-- Date Range Filter -->
+        <div class="flex items-center gap-3">
+          <label for="insights-range-selector" class="text-xs font-bold text-plum-500 dark:text-ivory-300">Period:</label>
+          <select 
+            id="insights-range-selector" 
+            class="px-4 py-2 rounded-xl text-xs font-bold bg-white dark:bg-plum-900 border border-plum-600/15 dark:border-terracotta-400/20 text-plum-600 dark:text-ivory-100 focus:outline-none focus:ring-2 focus:ring-terracotta-400 shadow-sm"
+          >
+            <option value="this-week">This Week (Current Plan)</option>
+            <option value="last-week">Last Week (Past Record)</option>
+            <option value="monthly-avg">30-Day Moving Average</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Insights Grid -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+        
+        <!-- Weekly Calorie Bar Chart (Left 8 cols) -->
+        <div class="lg:col-span-8 glass-card rounded-3xl p-6 sm:p-8 border border-plum-600/10 dark:border-plum-800 bg-white/95 dark:bg-plum-900/80 shadow-md">
+          <div class="flex items-center justify-between mb-6">
+            <div>
+              <h4 class="font-extrabold text-plum-600 dark:text-ivory-100 text-lg">Weekly Calorie Trajectory</h4>
+              <p class="text-xs text-plum-400 dark:text-ivory-400 mt-0.5">Daily intake vs 2,150 kcal maintenance line</p>
+            </div>
+            <div class="flex items-center gap-4 text-xs font-bold">
+              <span class="flex items-center gap-1.5 text-plum-600 dark:text-ivory-200">
+                <span class="w-2.5 h-2.5 rounded-full bg-terracotta-400"></span> Actual Fuel
+              </span>
+              <span class="flex items-center gap-1.5 text-plum-400 dark:text-ivory-400">
+                <span class="w-4 h-0.5 bg-plum-400 border-dashed"></span> Target Baseline
+              </span>
+            </div>
+          </div>
+
+          <!-- Bar Chart Container -->
+          <div class="relative h-64 flex items-end justify-between gap-2 sm:gap-6 pt-8 pb-4 border-b border-plum-600/15 dark:border-plum-700">
+            <!-- Target Reference Line at 86% height -->
+            <div class="absolute top-[24%] left-0 right-0 border-b-2 border-dashed border-plum-600/20 dark:border-ivory-200/20 pointer-events-none z-0"></div>
+
+            <!-- Mon -->
+            <div class="flex-1 flex flex-col items-center h-full justify-end group relative z-10">
+              <div class="w-full max-w-[40px] insight-calorie-bar bg-terracotta-400 rounded-t-xl transition-all duration-500 hover:brightness-110 relative" style="height: 84%;">
+                <span class="bar-val-label opacity-0 group-hover:opacity-100 absolute -top-7 left-1/2 -translate-x-1/2 text-[10px] font-black bg-plum-950 text-ivory-100 px-1.5 py-0.5 rounded shadow transition">2100</span>
+              </div>
+              <span class="text-xs font-bold text-plum-500 dark:text-ivory-300 mt-3">Mon</span>
+            </div>
+
+            <!-- Tue -->
+            <div class="flex-1 flex flex-col items-center h-full justify-end group relative z-10">
+              <div class="w-full max-w-[40px] insight-calorie-bar bg-terracotta-400 rounded-t-xl transition-all duration-500 hover:brightness-110 relative" style="height: 79%;">
+                <span class="bar-val-label opacity-0 group-hover:opacity-100 absolute -top-7 left-1/2 -translate-x-1/2 text-[10px] font-black bg-plum-950 text-ivory-100 px-1.5 py-0.5 rounded shadow transition">1980</span>
+              </div>
+              <span class="text-xs font-bold text-plum-500 dark:text-ivory-300 mt-3">Tue</span>
+            </div>
+
+            <!-- Wed -->
+            <div class="flex-1 flex flex-col items-center h-full justify-end group relative z-10">
+              <div class="w-full max-w-[40px] insight-calorie-bar bg-terracotta-400 rounded-t-xl transition-all duration-500 hover:brightness-110 relative" style="height: 86%;">
+                <span class="bar-val-label opacity-0 group-hover:opacity-100 absolute -top-7 left-1/2 -translate-x-1/2 text-[10px] font-black bg-plum-950 text-ivory-100 px-1.5 py-0.5 rounded shadow transition">2150</span>
+              </div>
+              <span class="text-xs font-bold text-plum-500 dark:text-ivory-300 mt-3">Wed</span>
+            </div>
+
+            <!-- Thu -->
+            <div class="flex-1 flex flex-col items-center h-full justify-end group relative z-10">
+              <div class="w-full max-w-[40px] insight-calorie-bar bg-terracotta-400 rounded-t-xl transition-all duration-500 hover:brightness-110 relative" style="height: 82%;">
+                <span class="bar-val-label opacity-0 group-hover:opacity-100 absolute -top-7 left-1/2 -translate-x-1/2 text-[10px] font-black bg-plum-950 text-ivory-100 px-1.5 py-0.5 rounded shadow transition">2050</span>
+              </div>
+              <span class="text-xs font-bold text-plum-500 dark:text-ivory-300 mt-3">Thu</span>
+            </div>
+
+            <!-- Fri -->
+            <div class="flex-1 flex flex-col items-center h-full justify-end group relative z-10">
+              <div class="w-full max-w-[40px] insight-calorie-bar bg-terracotta-400 rounded-t-xl transition-all duration-500 hover:brightness-110 relative" style="height: 85%;">
+                <span class="bar-val-label opacity-0 group-hover:opacity-100 absolute -top-7 left-1/2 -translate-x-1/2 text-[10px] font-black bg-plum-950 text-ivory-100 px-1.5 py-0.5 rounded shadow transition">2120</span>
+              </div>
+              <span class="text-xs font-bold text-plum-500 dark:text-ivory-300 mt-3">Fri</span>
+            </div>
+
+            <!-- Sat -->
+            <div class="flex-1 flex flex-col items-center h-full justify-end group relative z-10">
+              <div class="w-full max-w-[40px] insight-calorie-bar bg-terracotta-400 rounded-t-xl transition-all duration-500 hover:brightness-110 relative" style="height: 88%;">
+                <span class="bar-val-label opacity-0 group-hover:opacity-100 absolute -top-7 left-1/2 -translate-x-1/2 text-[10px] font-black bg-plum-950 text-ivory-100 px-1.5 py-0.5 rounded shadow transition">2200</span>
+              </div>
+              <span class="text-xs font-bold text-plum-500 dark:text-ivory-300 mt-3">Sat</span>
+            </div>
+
+            <!-- Sun -->
+            <div class="flex-1 flex flex-col items-center h-full justify-end group relative z-10">
+              <div class="w-full max-w-[40px] insight-calorie-bar bg-terracotta-400 rounded-t-xl transition-all duration-500 hover:brightness-110 relative" style="height: 83%;">
+                <span class="bar-val-label opacity-0 group-hover:opacity-100 absolute -top-7 left-1/2 -translate-x-1/2 text-[10px] font-black bg-plum-950 text-ivory-100 px-1.5 py-0.5 rounded shadow transition">2080</span>
+              </div>
+              <span class="text-xs font-bold text-plum-500 dark:text-ivory-300 mt-3">Sun</span>
+            </div>
+
+          </div>
+
+          <div class="flex items-center justify-between text-xs text-plum-400 dark:text-ivory-400 pt-3">
+            <span>Average: 2,097 kcal / day</span>
+            <span class="text-emerald-500 font-bold">Stable Energy Index (+98%)</span>
+          </div>
+        </div>
+
+        <!-- Macronutrient Distribution & Consistency Card (Right 4 cols) -->
+        <div class="lg:col-span-4 space-y-6">
+          
+          <!-- Macro Ratio Breakdown -->
+          <div class="glass-card rounded-3xl p-6 border border-plum-600/10 dark:border-plum-800 bg-white/95 dark:bg-plum-900/80 shadow-md">
+            <h4 class="font-extrabold text-plum-600 dark:text-ivory-100 text-base mb-1">Macronutrient Ratio</h4>
+            <p class="text-xs text-plum-400 dark:text-ivory-400 mb-4">Calculated weekly distribution</p>
+
+            <!-- Segmented progress bar -->
+            <div class="w-full h-3 rounded-full overflow-hidden flex mb-4">
+              <div class="h-full bg-plum-600 dark:bg-terracotta-300" style="width: 28%;" title="Protein 28%"></div>
+              <div class="h-full bg-amber-500" style="width: 47%;" title="Carbs 47%"></div>
+              <div class="h-full bg-emerald-500" style="width: 25%;" title="Healthy Fats 25%"></div>
+            </div>
+
+            <div class="space-y-2 text-xs font-semibold">
+              <div class="flex items-center justify-between">
+                <span class="flex items-center gap-2">
+                  <span class="w-2.5 h-2.5 rounded-full bg-plum-600 dark:bg-terracotta-300"></span>
+                  <span class="text-plum-600 dark:text-ivory-200">Protein (142g)</span>
+                </span>
+                <span class="font-bold text-plum-600 dark:text-ivory-100">28%</span>
+              </div>
+              <div class="flex items-center justify-between">
+                <span class="flex items-center gap-2">
+                  <span class="w-2.5 h-2.5 rounded-full bg-amber-500"></span>
+                  <span class="text-plum-600 dark:text-ivory-200">Complex Carbs (210g)</span>
+                </span>
+                <span class="font-bold text-plum-600 dark:text-ivory-100">47%</span>
+              </div>
+              <div class="flex items-center justify-between">
+                <span class="flex items-center gap-2">
+                  <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+                  <span class="text-plum-600 dark:text-ivory-200">Healthy Fats (65g)</span>
+                </span>
+                <span class="font-bold text-plum-600 dark:text-ivory-100">25%</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Adherence & Habit Streak -->
+          <div class="glass-card rounded-3xl p-6 border border-plum-600/10 dark:border-plum-800 bg-white/95 dark:bg-plum-900/80 shadow-md">
+            <span class="text-[10px] font-bold uppercase tracking-wider text-terracotta-500 dark:text-terracotta-400">Consistency Metric</span>
+            <div class="mt-2 flex items-baseline justify-between">
+              <h5 id="insight-streak-text" class="text-xl font-black text-plum-600 dark:text-ivory-100">18 Days Active</h5>
+              <span id="insight-consistency-rate" class="text-xs font-bold text-emerald-600 dark:text-emerald-400 bg-emerald-100 dark:bg-emerald-950 px-2 py-0.5 rounded-md">94% On-Track</span>
+            </div>
+            <p class="text-xs text-plum-400 dark:text-ivory-400 mt-2 leading-relaxed">
+              You planned 100% of breakfasts and prepped Sunday containers 3 weeks uninterrupted.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- SECTION 9: MOBILE COMPANION APP PREVIEW -->
+  <!-- ========================================================================= -->
+  <section id="mobile-app" class="py-24 border-t border-plum-600/10 dark:border-plum-800 overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-14 lg:gap-12 items-center">
+
+        <!-- Copy, features, store badges & waitlist -->
+        <div class="lg:col-span-6 space-y-7 order-2 lg:order-1">
+          <div>
+            <div class="flex flex-wrap items-center gap-2">
+              <span class="text-xs font-bold uppercase tracking-wider text-terracotta-500 dark:text-terracotta-400">Mobile Companion</span>
+              <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-plum-100 text-plum-600 dark:bg-plum-800 dark:text-terracotta-300">Private Beta</span>
+            </div>
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-plum-600 dark:text-ivory-100 tracking-tight mt-1">
+              Your Plan, Right in Your Pocket
+            </h2>
+            <p class="text-sm text-plum-500 dark:text-ivory-300 mt-3 max-w-xl leading-relaxed">
+              Take your weekly plan into the kitchen and your grocery list into the store. The phone preview is live &mdash; it mirrors the planner, grocery list and water tracker on this page.
+            </p>
+          </div>
+
+          <!-- Feature list -->
+          <ul class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <li class="flex gap-3">
+              <span class="w-10 h-10 rounded-xl bg-terracotta-100 dark:bg-plum-800 text-terracotta-600 dark:text-terracotta-300 flex items-center justify-center flex-shrink-0" aria-hidden="true">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+              </span>
+              <div>
+                <h3 class="text-sm font-bold text-plum-600 dark:text-ivory-100">In-store grocery mode</h3>
+                <p class="text-xs text-plum-500 dark:text-ivory-300 mt-0.5 leading-relaxed">Check items off with one thumb, aisle by aisle.</p>
+              </div>
+            </li>
+            <li class="flex gap-3">
+              <span class="w-10 h-10 rounded-xl bg-plum-100 dark:bg-plum-800 text-plum-600 dark:text-ivory-100 flex items-center justify-center flex-shrink-0" aria-hidden="true">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/></svg>
+              </span>
+              <div>
+                <h3 class="text-sm font-bold text-plum-600 dark:text-ivory-100">Gentle prep reminders</h3>
+                <p class="text-xs text-plum-500 dark:text-ivory-300 mt-0.5 leading-relaxed">Nudges for Sunday prep, thawing and marinating.</p>
+              </div>
+            </li>
+            <li class="flex gap-3">
+              <span class="w-10 h-10 rounded-xl bg-plum-100 dark:bg-plum-800 text-plum-600 dark:text-ivory-100 flex items-center justify-center flex-shrink-0" aria-hidden="true">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3c-3 4.5-6 7.5-6 11a6 6 0 0012 0c0-3.5-3-6.5-6-11z"/></svg>
+              </span>
+              <div>
+                <h3 class="text-sm font-bold text-plum-600 dark:text-ivory-100">One-tap hydration</h3>
+                <p class="text-xs text-plum-500 dark:text-ivory-300 mt-0.5 leading-relaxed">Log a glass of water in a single tap.</p>
+              </div>
+            </li>
+            <li class="flex gap-3">
+              <span class="w-10 h-10 rounded-xl bg-terracotta-100 dark:bg-plum-800 text-terracotta-600 dark:text-terracotta-300 flex items-center justify-center flex-shrink-0" aria-hidden="true">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+              </span>
+              <div>
+                <h3 class="text-sm font-bold text-plum-600 dark:text-ivory-100">Synced with the web</h3>
+                <p class="text-xs text-plum-500 dark:text-ivory-300 mt-0.5 leading-relaxed">Planner changes show up on your phone instantly.</p>
+              </div>
+            </li>
+          </ul>
+
+          <!-- Store badges (apps not released yet; clicking explains this) -->
+          <div class="flex flex-wrap gap-3">
+            <button type="button" id="app-store-btn" data-store="iPhone" class="store-badge-btn inline-flex items-center gap-3 px-5 py-2.5 rounded-xl bg-plum-600 dark:bg-ivory-100 text-ivory-100 dark:text-plum-900 shadow-md hover:bg-plum-700 dark:hover:bg-ivory-200 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-terracotta-400 focus-visible:ring-offset-2 focus-visible:ring-offset-ivory-100 dark:focus-visible:ring-offset-plum-950">
+              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+              <span class="text-left leading-tight">
+                <span class="block text-[10px] font-semibold opacity-80">Coming soon on the</span>
+                <span class="block text-sm font-extrabold">App Store</span>
+              </span>
+            </button>
+            <button type="button" id="google-play-btn" data-store="Android" class="store-badge-btn inline-flex items-center gap-3 px-5 py-2.5 rounded-xl border-2 border-plum-600/20 dark:border-ivory-100/20 text-plum-600 dark:text-ivory-100 hover:border-terracotta-400 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-terracotta-400 focus-visible:ring-offset-2 focus-visible:ring-offset-ivory-100 dark:focus-visible:ring-offset-plum-950">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.198l2.807 1.626a1 1 0 0 1 0 1.73l-2.808 1.626L15.206 12l2.492-2.491zM5.864 2.658L16.802 8.99l-2.303 2.303-8.635-8.635z"/></svg>
+              <span class="text-left leading-tight">
+                <span class="block text-[10px] font-semibold opacity-80">Coming soon on</span>
+                <span class="block text-sm font-extrabold">Google Play</span>
+              </span>
+            </button>
+          </div>
+
+          <!-- Beta waitlist (demo: stored in this browser only) -->
+          <form id="app-waitlist-form" novalidate class="rounded-2xl p-5 border border-plum-600/10 dark:border-plum-800 bg-white/90 dark:bg-plum-900/70 shadow-sm space-y-3">
+            <div class="flex items-center justify-between gap-2">
+              <h3 class="text-sm font-extrabold text-plum-600 dark:text-ivory-100">Join the beta waitlist</h3>
+              <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-ivory-200 dark:bg-plum-800 text-plum-500 dark:text-ivory-300">Demo</span>
+            </div>
+            <div class="flex flex-col sm:flex-row gap-2">
+              <label for="waitlist-email" class="sr-only">Email address</label>
+              <input
+                type="email"
+                id="waitlist-email"
+                autocomplete="email"
+                placeholder="you@example.com"
+                aria-describedby="waitlist-error waitlist-note"
+                class="flex-1 min-w-0 px-3.5 py-2.5 rounded-xl text-xs bg-ivory-100 dark:bg-plum-950 border border-plum-600/10 dark:border-plum-800 text-plum-600 dark:text-ivory-100 placeholder-plum-400 dark:placeholder-ivory-400 focus:outline-none focus:ring-2 focus:ring-terracotta-400 aria-[invalid=true]:border-rose-400"
+              />
+              <label for="waitlist-platform" class="sr-only">Preferred platform</label>
+              <select
+                id="waitlist-platform"
+                class="px-3 py-2.5 rounded-xl text-xs font-semibold bg-ivory-100 dark:bg-plum-950 border border-plum-600/10 dark:border-plum-800 text-plum-600 dark:text-ivory-100 focus:outline-none focus:ring-2 focus:ring-terracotta-400"
+              >
+                <option value="iPhone">iPhone</option>
+                <option value="Android">Android</option>
+              </select>
+              <button type="submit" class="px-5 py-2.5 rounded-xl bg-plum-600 hover:bg-plum-700 dark:bg-terracotta-400 dark:hover:bg-terracotta-500 text-ivory-100 dark:text-plum-950 font-bold text-xs shadow-md transition focus:outline-none focus-visible:ring-2 focus-visible:ring-terracotta-400">
+                Notify Me
+              </button>
+            </div>
+            <p id="waitlist-error" class="hidden text-xs font-semibold text-rose-600 dark:text-rose-400" role="alert"></p>
+            <p id="waitlist-note" class="text-[11px] text-plum-400 dark:text-ivory-400">Demo mode: your email is saved only in this browser. No emails are sent.</p>
+          </form>
+
+          <div id="app-waitlist-success" class="hidden rounded-2xl p-5 border border-emerald-200 dark:border-emerald-800 bg-emerald-50 dark:bg-emerald-950/40" role="status">
+            <p class="text-sm font-extrabold text-emerald-800 dark:text-emerald-200">&#10003; You're on the <span id="waitlist-success-platform">iPhone</span> beta list</p>
+            <p class="text-xs text-emerald-800/80 dark:text-emerald-300 mt-1 break-all">We'll use <span id="waitlist-success-email" class="font-bold"></span> (demo &mdash; stored in this browser only).</p>
+            <button type="button" id="waitlist-reset-btn" class="mt-3 text-xs font-bold text-emerald-800 dark:text-emerald-200 underline hover:no-underline focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 rounded">
+              Use a different email
+            </button>
+          </div>
+        </div>
+
+        <!-- Live phone preview -->
+        <div class="lg:col-span-6 order-1 lg:order-2 flex justify-center">
+          <div class="relative">
+            <!-- Soft backdrop -->
+            <div class="absolute -inset-10 rounded-full bg-terracotta-400/15 dark:bg-terracotta-400/10 blur-3xl pointer-events-none" aria-hidden="true"></div>
+
+            <!-- Floating cards (large screens only, to avoid crowding) -->
+            <div class="hidden lg:flex absolute -left-28 top-24 z-20 items-center gap-3 px-4 py-3 rounded-2xl bg-white/95 dark:bg-plum-900/95 border border-plum-600/10 dark:border-terracotta-400/30 shadow-xl" aria-hidden="true">
+              <span class="w-8 h-8 rounded-xl bg-terracotta-100 dark:bg-plum-800 flex items-center justify-center text-sm">&#9200;</span>
+              <div>
+                <p class="text-xs font-bold text-plum-600 dark:text-ivory-100">Prep reminder</p>
+                <p class="text-[10px] text-plum-400 dark:text-ivory-400">Sunday &middot; 5:00 PM</p>
+              </div>
+            </div>
+            <div class="hidden lg:flex absolute -right-24 bottom-28 z-20 items-center gap-3 px-4 py-3 rounded-2xl bg-white/95 dark:bg-plum-900/95 border border-plum-600/10 dark:border-terracotta-400/30 shadow-xl">
+              <span class="w-8 h-8 rounded-xl bg-plum-100 dark:bg-plum-800 flex items-center justify-center text-sm" aria-hidden="true">&#128722;</span>
+              <div>
+                <p class="text-xs font-bold text-plum-600 dark:text-ivory-100">Grocery list synced</p>
+                <p id="phone-float-grocery" class="text-[10px] text-plum-400 dark:text-ivory-400" aria-live="polite">7 items left to pick</p>
+              </div>
+            </div>
+
+            <!-- Phone frame -->
+            <div class="relative w-[260px] sm:w-[290px] rounded-[2.75rem] bg-plum-900 dark:bg-black p-3 shadow-2xl shadow-plum-900/30 ring-1 ring-plum-600/20 dark:ring-terracotta-400/25">
+              <div class="absolute top-3 left-1/2 -translate-x-1/2 w-24 h-6 bg-plum-900 dark:bg-black rounded-b-2xl z-20" aria-hidden="true"></div>
+
+              <div class="relative rounded-[2.1rem] overflow-hidden bg-ivory-100 dark:bg-plum-950 h-[540px] sm:h-[580px] flex flex-col">
+                <!-- Status bar -->
+                <div class="flex items-center justify-between px-6 pt-3 pb-1 text-[10px] font-bold text-plum-600 dark:text-ivory-100" aria-hidden="true">
+                  <span>9:41</span>
+                  <span class="flex items-center gap-1">
+                    <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M2 20h3v-4H2v4zm5 0h3v-8H7v8zm5 0h3V8h-3v12zm5 0h3V4h-3v16z"/></svg>
+                    <svg class="w-4 h-3.5" fill="currentColor" viewBox="0 0 28 14"><rect x="0.5" y="0.5" width="23" height="13" rx="3" fill="none" stroke="currentColor"/><rect x="2.5" y="2.5" width="16" height="9" rx="1.5"/><rect x="25" y="4.5" width="2" height="5" rx="1"/></svg>
+                  </span>
+                </div>
+
+                <!-- App header -->
+                <div class="flex items-center justify-between px-4 pt-3 pb-3">
+                  <div>
+                    <p class="text-[10px] font-semibold text-plum-400 dark:text-ivory-400">Nourishly</p>
+                    <p id="phone-greeting" class="text-base font-extrabold text-plum-600 dark:text-ivory-100 truncate max-w-[170px]">Good morning</p>
+                  </div>
+                  <div class="w-9 h-9 rounded-xl overflow-hidden shadow-sm flex items-center justify-center shrink-0" aria-hidden="true">
+                    <img src="assets/images/logo.svg" alt="Nourishly App Logo" class="w-full h-full object-cover" />
+                  </div>
+                </div>
+
+                <!-- Screen content (rendered from live app state) -->
+                <div id="phone-screen-content" class="flex-1 overflow-y-auto px-4 pb-4" role="tabpanel" aria-labelledby="phone-tab-today" aria-live="polite"></div>
+
+                <!-- Tab bar -->
+                <div class="grid grid-cols-3 border-t border-plum-600/10 dark:border-plum-800 bg-white/90 dark:bg-plum-900/90 px-2 pt-2 pb-4" role="tablist" aria-label="Mobile preview screens">
+                  <button type="button" id="phone-tab-today" data-phone-tab="today" role="tab" aria-selected="true" aria-controls="phone-screen-content" class="phone-tab-btn phone-tab-active flex flex-col items-center gap-0.5 py-1 rounded-lg text-[10px] font-bold focus:outline-none focus-visible:ring-2 focus-visible:ring-terracotta-400">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                    Today
+                  </button>
+                  <button type="button" id="phone-tab-grocery" data-phone-tab="grocery" role="tab" aria-selected="false" aria-controls="phone-screen-content" class="phone-tab-btn flex flex-col items-center gap-0.5 py-1 rounded-lg text-[10px] font-bold focus:outline-none focus-visible:ring-2 focus-visible:ring-terracotta-400">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+                    Grocery
+                  </button>
+                  <button type="button" id="phone-tab-water" data-phone-tab="water" role="tab" aria-selected="false" aria-controls="phone-screen-content" class="phone-tab-btn flex flex-col items-center gap-0.5 py-1 rounded-lg text-[10px] font-bold focus:outline-none focus-visible:ring-2 focus-visible:ring-terracotta-400">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3c-3 4.5-6 7.5-6 11a6 6 0 0012 0c0-3.5-3-6.5-6-11z"/></svg>
+                    Water
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- SECTION 10: FREQUENTLY ASKED QUESTIONS -->
+  <!-- ========================================================================= -->
+  <section id="faq" class="py-24 bg-ivory-200/50 dark:bg-plum-900/30 border-t border-plum-600/10 dark:border-plum-800 transition-colors">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
+
+        <!-- Intro, search & contact -->
+        <div class="lg:col-span-4 space-y-6 lg:sticky lg:top-28">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-terracotta-500 dark:text-terracotta-400">Good to Know</span>
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-plum-600 dark:text-ivory-100 tracking-tight mt-1">
+              Frequently Asked Questions
+            </h2>
+            <p class="text-sm text-plum-500 dark:text-ivory-300 mt-3 leading-relaxed">
+              Quick answers about planning, recipes, your data and what this demo can do.
+            </p>
+          </div>
+
+          <div>
+            <label for="faq-search" class="sr-only">Search frequently asked questions</label>
+            <div class="relative">
+              <input
+                type="search"
+                id="faq-search"
+                placeholder="Search questions..."
+                class="w-full pl-10 pr-4 py-2.5 rounded-full text-xs font-medium bg-white dark:bg-plum-900 border border-plum-600/15 dark:border-terracotta-400/20 text-plum-600 dark:text-ivory-100 placeholder-plum-400 dark:placeholder-ivory-400 focus:outline-none focus:ring-2 focus:ring-terracotta-400 shadow-sm"
+              />
+              <svg class="w-4 h-4 text-plum-400 absolute left-3.5 top-3 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+              </svg>
+            </div>
+            <p id="faq-count" class="text-[11px] font-semibold text-plum-400 dark:text-ivory-400 mt-2 pl-1" aria-live="polite">7 questions</p>
+          </div>
+
+          <div class="rounded-2xl p-5 bg-plum-600 dark:bg-plum-800 text-ivory-100 shadow-md">
+            <h3 class="text-sm font-extrabold">Still curious?</h3>
+            <p class="text-xs text-ivory-200 mt-1 leading-relaxed">Our team usually replies within one business day.</p>
+            <div class="flex flex-wrap gap-2 mt-4">
+              <a href="mailto:contact@nourishly.health" class="px-4 py-2 rounded-full bg-terracotta-400 hover:bg-terracotta-300 text-plum-950 text-xs font-bold transition focus:outline-none focus-visible:ring-2 focus-visible:ring-ivory-100">Email Us</a>
+              <a href="#account-workspace" class="px-4 py-2 rounded-full border border-ivory-100/30 hover:border-terracotta-300 text-ivory-100 text-xs font-bold transition focus:outline-none focus-visible:ring-2 focus-visible:ring-ivory-100">Try the Demo</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Accordion -->
+        <div class="lg:col-span-8">
+          <div id="faq-list" class="space-y-3">
+            <!-- Rendered via JavaScript -->
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- SECTION 11: ACCOUNT ACCESS & PERSONAL WORKSPACE -->
+  <!-- ========================================================================= -->
+  <section id="account-workspace" class="py-24 border-t border-plum-600/10 dark:border-plum-800">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Unauthenticated View Prompt -->
+      <div id="auth-prompt-view" class="glass-card rounded-3xl p-8 sm:p-12 border border-plum-600/10 dark:border-plum-800 bg-white/95 dark:bg-plum-900/80 shadow-xl text-center">
+        <div class="w-16 h-16 rounded-3xl bg-terracotta-100 dark:bg-plum-800 text-terracotta-600 dark:text-terracotta-300 mx-auto flex items-center justify-center text-2xl shadow-sm mb-6">
+          🔒
+        </div>
+        <span class="text-xs font-bold uppercase tracking-wider text-terracotta-500 dark:text-terracotta-400">Account Access & Personal Workspace</span>
+        <h2 class="text-3xl font-extrabold text-plum-600 dark:text-ivory-100 tracking-tight mt-1">
+          Save Your Meal Plans & Synced Grocery Data
+        </h2>
+        <p class="text-sm text-plum-500 dark:text-ivory-300 mt-3 max-w-md mx-auto leading-relaxed">
+          Sign in or explore our interactive simulated session to preview your synchronized meal dashboard, saved culinary favorites, and customized nutritional targets.
+        </p>
+
+        <!-- Demo Mode Notice -->
+        <div class="inline-flex items-center gap-2 mt-4 px-3 py-1 rounded-full bg-ivory-200 dark:bg-plum-950 text-xs font-semibold text-plum-500 dark:text-ivory-300">
+          <span>⚡ Demo Sandbox: Interactive client-side session without backend setup required</span>
+        </div>
+
+        <div class="flex flex-wrap items-center justify-center gap-4 mt-8">
+          <button 
+            onclick="openAuthModal('signin')" 
+            class="px-8 py-3 rounded-full bg-plum-600 hover:bg-plum-700 dark:bg-terracotta-400 dark:hover:bg-terracotta-500 text-ivory-100 dark:text-plum-950 font-bold text-xs shadow-md transition"
+          >
+            Sign In / Register
+          </button>
+          <button 
+            onclick="demoQuickSignIn('wellness')" 
+            class="px-8 py-3 rounded-full border border-plum-600/20 dark:border-terracotta-400/30 text-plum-600 dark:text-ivory-100 hover:bg-ivory-200 dark:hover:bg-plum-800 font-bold text-xs transition"
+          >
+            1-Click Demo Login
+          </button>
+        </div>
+      </div>
+
+      <!-- Authenticated Personal Workspace View (Hidden by default until login) -->
+      <div id="personal-workspace-view" class="hidden glass-card rounded-3xl p-8 sm:p-12 border border-plum-600/10 dark:border-plum-800 bg-white/95 dark:bg-plum-900/80 shadow-xl">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-6 border-b border-plum-600/10 dark:border-plum-800 gap-4">
+          <div class="flex items-center gap-4">
+            <div class="w-16 h-16 rounded-2xl bg-plum-600 dark:bg-terracotta-400 text-ivory-100 dark:text-plum-950 font-black text-2xl flex items-center justify-center shadow-md">
+              <span id="workspace-avatar-letter">E</span>
+            </div>
+            <div>
+              <div class="flex items-center gap-2">
+                <h3 id="workspace-user-name" class="text-xl font-extrabold text-plum-600 dark:text-ivory-100">Elena Vance</h3>
+                <span id="workspace-user-plan" class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-terracotta-100 text-terracotta-700 dark:bg-plum-800 dark:text-terracotta-300">
+                  Nourishly Plus
+                </span>
+              </div>
+              <p id="workspace-user-email" class="text-xs text-plum-400 dark:text-ivory-400">elena.wellness@nourishly.demo</p>
+            </div>
+          </div>
+
+          <button 
+            onclick="logoutUser()" 
+            class="px-5 py-2 text-xs font-bold rounded-xl border border-plum-600/20 text-plum-500 hover:text-rose-500 dark:border-ivory-200/20 dark:text-ivory-300 dark:hover:text-rose-400 transition"
+          >
+            Sign Out
+          </button>
+        </div>
+
+        <!-- User Workspace Stats -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-6">
+          <div class="p-4 rounded-2xl bg-ivory-100 dark:bg-plum-950 border border-plum-600/10 dark:border-plum-800">
+            <span class="text-xs font-bold uppercase tracking-wider text-plum-400 dark:text-ivory-400">Current Diet</span>
+            <p id="workspace-current-diet" class="text-lg font-black text-plum-600 dark:text-ivory-100 mt-1">Balanced Whole-Food</p>
+            <p class="text-[11px] text-terracotta-500 dark:text-terracotta-400 mt-1">Synched with planner</p>
+          </div>
+          <div class="p-4 rounded-2xl bg-ivory-100 dark:bg-plum-950 border border-plum-600/10 dark:border-plum-800">
+            <span class="text-xs font-bold uppercase tracking-wider text-plum-400 dark:text-ivory-400">Calorie Target</span>
+            <p id="workspace-calorie-goal" class="text-lg font-black text-plum-600 dark:text-ivory-100 mt-1">2,150 kcal</p>
+            <p class="text-[11px] text-emerald-500 mt-1">Maintenance Optimal</p>
+          </div>
+          <div class="p-4 rounded-2xl bg-ivory-100 dark:bg-plum-950 border border-plum-600/10 dark:border-plum-800">
+            <span class="text-xs font-bold uppercase tracking-wider text-plum-400 dark:text-ivory-400">Saved Recipes</span>
+            <p class="text-lg font-black text-plum-600 dark:text-ivory-100 mt-1">6 Bookmarked</p>
+            <a href="#recipes" class="text-[11px] font-bold text-terracotta-600 dark:text-terracotta-400 mt-1 inline-block hover:underline">Browse Library →</a>
+          </div>
+        </div>
+
+        <div class="mt-8 p-4 rounded-2xl bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800 text-xs text-emerald-800 dark:text-emerald-300 flex items-center justify-between">
+          <span>✓ Session active: Your customized 7-day meal plan and grocery checkmarks are synced to local storage.</span>
+          <a href="#meal-planner" class="font-bold underline ml-2">Edit Plan</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- SECTION 12: FINAL CTA & PREMIUM FOOTER -->
+  <!-- ========================================================================= -->
+  <section id="final-cta" class="py-24 bg-gradient-to-b from-transparent to-ivory-200/80 dark:to-plum-900/60 border-t border-plum-600/10 dark:border-plum-800 transition-colors">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      
+      <span class="text-xs font-bold uppercase tracking-widest text-terracotta-500 dark:text-terracotta-400">Start Today</span>
+      <h2 class="text-4xl sm:text-5xl font-extrabold text-plum-600 dark:text-ivory-100 tracking-tight mt-2">
+        Make Healthy Eating Feel Effortless.
+      </h2>
+      <p class="text-base sm:text-lg text-plum-500 dark:text-ivory-300 mt-4 max-w-xl mx-auto leading-relaxed">
+        A little planning today can make your entire week easier. Join thousands taking the guesswork out of nutrition.
+      </p>
+
+      <div class="mt-8 flex flex-wrap items-center justify-center gap-4">
+        <a 
+          href="#meal-planner" 
+          class="px-10 py-4 rounded-full bg-plum-600 hover:bg-plum-700 dark:bg-terracotta-400 dark:hover:bg-terracotta-500 text-ivory-100 dark:text-plum-950 font-bold text-sm shadow-xl shadow-plum-600/15 dark:shadow-terracotta-400/20 transition-all duration-200 transform hover:-translate-y-0.5"
+        >
+          Start Planning
+        </a>
+        <a 
+          href="#nutrition-profile" 
+          class="px-10 py-4 rounded-full border-2 border-plum-600/20 dark:border-ivory-100/20 text-plum-600 dark:text-ivory-100 hover:border-terracotta-400 hover:text-terracotta-500 font-bold text-sm transition"
+        >
+          Calibrate Profile
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-ivory-200/80 dark:bg-plum-950 text-plum-600 dark:text-ivory-100 pt-16 pb-12 border-t border-plum-600/15 dark:border-plum-800 transition-colors duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 pb-12 border-b border-plum-600/15 dark:border-plum-800">
+        
+        <!-- Brand Summary (4 cols) -->
+        <div class="lg:col-span-4 space-y-4">
+          <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-xl overflow-hidden shadow-sm flex items-center justify-center shrink-0">
+              <img src="assets/images/logo.svg" alt="Nourishly Logo" class="w-full h-full object-cover" />
+            </div>
+            <span class="text-xl font-extrabold tracking-tight text-plum-600 dark:text-ivory-100">Nourishly</span>
+          </div>
+          <p class="text-xs text-plum-500 dark:text-ivory-300 leading-relaxed max-w-sm">
+            Nourishly is an international health-tech platform crafted for modern professionals, athletes, and wellness enthusiasts. Plan better, eat brighter, and master sustainable meal prep.
+          </p>
+          <div class="text-xs text-terracotta-600 dark:text-terracotta-400 font-semibold">
+            Tagline: Plan Better. Eat Brighter.
+          </div>
+        </div>
+
+        <!-- Quick Nav (3 cols) -->
+        <div class="lg:col-span-3 space-y-3">
+          <h4 class="text-xs font-bold uppercase tracking-wider text-terracotta-600 dark:text-terracotta-400">Navigation</h4>
+          <ul class="space-y-2 text-xs text-plum-500 dark:text-ivory-300">
+            <li><a href="#hero" class="hover:text-terracotta-600 dark:hover:text-terracotta-300 transition">Hero & Overview</a></li>
+            <li><a href="#nutrition-overview" class="hover:text-terracotta-600 dark:hover:text-terracotta-300 transition">Personalized Nutrition</a></li>
+            <li><a href="#meal-planner" class="hover:text-terracotta-600 dark:hover:text-terracotta-300 transition">Weekly Meal Planner</a></li>
+            <li><a href="#grocery-list" class="hover:text-terracotta-600 dark:hover:text-terracotta-300 transition">Smart Grocery List</a></li>
+            <li><a href="#nutrition-insights" class="hover:text-terracotta-600 dark:hover:text-terracotta-300 transition">Nutrition Insights</a></li>
+            <li><a href="#mobile-app" class="hover:text-terracotta-600 dark:hover:text-terracotta-300 transition">Mobile App</a></li>
+            <li><a href="#faq" class="hover:text-terracotta-600 dark:hover:text-terracotta-300 transition">FAQ</a></li>
+          </ul>
+        </div>
+
+        <!-- Recipes & Discovery (2 cols) -->
+        <div class="lg:col-span-2 space-y-3">
+          <h4 class="text-xs font-bold uppercase tracking-wider text-terracotta-600 dark:text-terracotta-400">Discover</h4>
+          <ul class="space-y-2 text-xs text-plum-500 dark:text-ivory-300">
+            <li><button onclick="filterRecipesAndScroll('High-Protein')" class="hover:text-terracotta-600 dark:hover:text-terracotta-300 transition text-left">High-Protein</button></li>
+            <li><button onclick="filterRecipesAndScroll('Vegetarian')" class="hover:text-terracotta-600 dark:hover:text-terracotta-300 transition text-left">Vegetarian</button></li>
+            <li><button onclick="filterRecipesAndScroll('Breakfast')" class="hover:text-terracotta-600 dark:hover:text-terracotta-300 transition text-left">Quick Breakfasts</button></li>
+            <li><button onclick="filterRecipesAndScroll('Dinner')" class="hover:text-terracotta-600 dark:hover:text-terracotta-300 transition text-left">Easy Dinners</button></li>
+            <li><button onclick="filterRecipesAndScroll('Snack')" class="hover:text-terracotta-600 dark:hover:text-terracotta-300 transition text-left">Healthy Snacks</button></li>
+          </ul>
+        </div>
+
+        <!-- Contact & Legal (3 cols) -->
+        <div class="lg:col-span-3 space-y-3">
+          <h4 class="text-xs font-bold uppercase tracking-wider text-terracotta-600 dark:text-terracotta-400">Contact & Support</h4>
+          <p class="text-xs text-plum-500 dark:text-ivory-300">Email: <a href="mailto:contact@nourishly.health" class="hover:underline text-plum-700 dark:text-ivory-100 font-semibold">contact@nourishly.health</a></p>
+          <p class="text-xs text-plum-500 dark:text-ivory-300">Studio: 450 Mission Street, San Francisco, CA</p>
+          
+          <div class="pt-2 flex gap-3 text-plum-600 dark:text-ivory-300">
+            <!-- Instagram -->
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Nourishly on Instagram" class="p-2 rounded-lg bg-ivory-100 border border-plum-600/10 hover:bg-terracotta-100 hover:text-terracotta-600 dark:bg-plum-900 dark:border-transparent dark:hover:bg-plum-800 dark:hover:text-terracotta-400 transition shadow-sm">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            </a>
+            <!-- Pinterest -->
+            <a href="https://pinterest.com" target="_blank" rel="noopener noreferrer" aria-label="Nourishly on Pinterest" class="p-2 rounded-lg bg-ivory-100 border border-plum-600/10 hover:bg-terracotta-100 hover:text-terracotta-600 dark:bg-plum-900 dark:border-transparent dark:hover:bg-plum-800 dark:hover:text-terracotta-400 transition shadow-sm">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.627 0-12 5.372-12 12 0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738.098.119.112.224.083.345-.09.375-.291 1.199-.332 1.357-.053.211-.174.256-.402.155-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.631-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146 1.124.347 2.317.535 3.554.535 6.627 0 12-5.373 12-12 0-6.628-5.373-12-12-12z"/></svg>
+            </a>
+            <!-- YouTube -->
+            <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" aria-label="Nourishly on YouTube" class="p-2 rounded-lg bg-ivory-100 border border-plum-600/10 hover:bg-terracotta-100 hover:text-terracotta-600 dark:bg-plum-900 dark:border-transparent dark:hover:bg-plum-800 dark:hover:text-terracotta-400 transition shadow-sm">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+            </a>
+            <!-- Facebook -->
+            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Nourishly on Facebook" class="p-2 rounded-lg bg-ivory-100 border border-plum-600/10 hover:bg-terracotta-100 hover:text-terracotta-600 dark:bg-plum-900 dark:border-transparent dark:hover:bg-plum-800 dark:hover:text-terracotta-400 transition shadow-sm">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M9 8H6v4h3v12h5V12h3.642L18 8h-4V6.333C14 5.374 14.5 5 15.5 5H18V0h-3.808C10.597 0 9 1.583 9 4.615V8z"/></svg>
+            </a>
+          </div>
+
+          <div class="pt-2 flex gap-4 text-xs text-plum-400 dark:text-ivory-400">
+            <button onclick="openLegalModal('privacy')" class="hover:underline hover:text-terracotta-600 dark:hover:text-terracotta-300">Privacy Policy</button>
+            <span>•</span>
+            <button onclick="openLegalModal('terms')" class="hover:underline hover:text-terracotta-600 dark:hover:text-terracotta-300">Terms of Service</button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Copyright row -->
+      <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-plum-400 dark:text-ivory-400 gap-4">
+        <p>© 2026 Nourishly Inc. All rights reserved. Plan Better. Eat Brighter.</p>
+        <p class="text-[11px]">Crafted with pure HTML5, Tailwind CSS, & Vanilla JS.</p>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- ========================================================================= -->
+  <!-- MODALS -->
+  <!-- ========================================================================= -->
+
+  <!-- 1. Recipe Detail & Macros Modal -->
+  <div id="recipe-detail-modal" class="fixed inset-0 z-50 bg-plum-950/70 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div class="glass-card modal-content-animated w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-3xl bg-white dark:bg-plum-900 p-6 sm:p-8 border border-plum-600/10 dark:border-plum-700 shadow-2xl relative">
+      <button onclick="closeRecipeDetailsModal()" class="absolute top-5 right-5 p-2 rounded-full bg-ivory-200 dark:bg-plum-800 text-plum-600 dark:text-ivory-200 hover:bg-rose-100 hover:text-rose-600 transition" aria-label="Close modal">
+        ✕
+      </button>
+
+      <div class="flex flex-col sm:flex-row gap-6 items-start">
+        <img id="detail-recipe-img" src="" alt="Recipe image" class="w-full sm:w-48 h-48 rounded-2xl object-cover shadow-sm flex-shrink-0" />
+        <div class="flex-1">
+          <span id="detail-recipe-category" class="px-2.5 py-1 rounded-md text-[10px] font-bold uppercase tracking-wider bg-terracotta-100 text-terracotta-700 dark:bg-plum-800 dark:text-terracotta-300">Category</span>
+          <h3 id="detail-recipe-title" class="text-xl font-black text-plum-600 dark:text-ivory-100 mt-2 leading-tight">Recipe Title</h3>
+          <p id="detail-recipe-time" class="text-xs text-plum-400 dark:text-ivory-400 mt-1 font-semibold">Prep Time</p>
+          <p id="detail-recipe-desc" class="text-xs text-plum-500 dark:text-ivory-300 mt-2 leading-relaxed">Description</p>
+        </div>
+      </div>
+
+      <!-- Macros breakdown bar -->
+      <div class="grid grid-cols-4 gap-2 my-6 p-4 rounded-2xl bg-ivory-100 dark:bg-plum-950 border border-plum-600/10 dark:border-plum-800 text-center">
+        <div>
+          <span class="text-[10px] uppercase font-bold text-plum-400 dark:text-ivory-400">Calories</span>
+          <p id="detail-recipe-calories" class="text-base font-black text-terracotta-600 dark:text-terracotta-400">580 kcal</p>
+        </div>
+        <div>
+          <span class="text-[10px] uppercase font-bold text-plum-400 dark:text-ivory-400">Protein</span>
+          <p id="detail-recipe-protein" class="text-base font-black text-plum-600 dark:text-ivory-100">44g</p>
+        </div>
+        <div>
+          <span class="text-[10px] uppercase font-bold text-plum-400 dark:text-ivory-400">Carbs</span>
+          <p id="detail-recipe-carbs" class="text-base font-black text-plum-600 dark:text-ivory-100">52g</p>
+        </div>
+        <div>
+          <span class="text-[10px] uppercase font-bold text-plum-400 dark:text-ivory-400">Fats</span>
+          <p id="detail-recipe-fat" class="text-base font-black text-plum-600 dark:text-ivory-100">22g</p>
+        </div>
+      </div>
+
+      <!-- Ingredients and steps tabs/columns -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-2">
+        <div>
+          <h4 class="text-xs font-bold uppercase tracking-wider text-plum-600 dark:text-ivory-100 mb-3">Ingredients Checklist</h4>
+          <ul id="detail-recipe-ingredients" class="space-y-2">
+            <!-- Injected by JS -->
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-xs font-bold uppercase tracking-wider text-plum-600 dark:text-ivory-100 mb-3">Preparation Steps</h4>
+          <ol id="detail-recipe-steps" class="space-y-3">
+            <!-- Injected by JS -->
+          </ol>
+        </div>
+      </div>
+
+      <div class="mt-8 pt-4 border-t border-plum-600/10 dark:border-plum-800 flex justify-end gap-3">
+        <button onclick="closeRecipeDetailsModal()" class="px-5 py-2 text-xs font-bold rounded-xl bg-ivory-200 dark:bg-plum-800 text-plum-600 dark:text-ivory-200">Close</button>
+        <button id="detail-recipe-add-btn" class="px-6 py-2 text-xs font-bold rounded-xl bg-plum-600 text-ivory-100 dark:bg-terracotta-400 dark:text-plum-950 hover:bg-terracotta-500 hover:text-white transition">+ Add to Current Plan</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. Meal Picker Modal (For Section 3 Planner) -->
+  <div id="meal-picker-modal" class="fixed inset-0 z-50 bg-plum-950/70 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div class="glass-card modal-content-animated w-full max-w-lg max-h-[85vh] overflow-y-auto rounded-3xl bg-white dark:bg-plum-900 p-6 border border-plum-600/10 dark:border-plum-700 shadow-2xl relative">
+      <div class="flex items-center justify-between pb-3 border-b border-plum-600/10 dark:border-plum-800 mb-4">
+        <div>
+          <h4 id="meal-picker-slot-title" class="font-extrabold text-plum-600 dark:text-ivory-100 text-base">Select Meal</h4>
+          <p class="text-xs text-plum-400 dark:text-ivory-400">Choose a culinary dish to schedule</p>
+        </div>
+        <button onclick="closeMealPicker()" class="p-1.5 rounded-full hover:bg-ivory-200 dark:hover:bg-plum-800 text-plum-400 text-sm">✕</button>
+      </div>
+
+      <div id="meal-picker-recipes-list" class="space-y-2.5">
+        <!-- Injected by JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. Auth Modal (Sign In / Register) -->
+  <div id="auth-modal" class="fixed inset-0 z-50 bg-plum-950/70 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div class="glass-card modal-content-animated w-full max-w-md rounded-3xl bg-white dark:bg-plum-900 p-6 sm:p-8 border border-plum-600/10 dark:border-plum-700 shadow-2xl relative">
+      <button onclick="closeAuthModal()" class="absolute top-5 right-5 p-2 rounded-full hover:bg-ivory-200 dark:hover:bg-plum-800 text-plum-400 text-xs">✕</button>
+
+      <!-- Tabs -->
+      <div class="flex border-b border-plum-600/10 dark:border-plum-800 mb-6">
+        <button id="auth-tab-signin" class="flex-1 pb-3 text-xs font-bold uppercase tracking-wider text-plum-600 dark:text-terracotta-400 border-b-2 border-plum-600 dark:border-terracotta-400 transition">
+          Sign In
+        </button>
+        <button id="auth-tab-register" class="flex-1 pb-3 text-xs font-bold uppercase tracking-wider text-plum-400 border-b-2 border-transparent hover:text-plum-600 transition">
+          Create Account
+        </button>
+      </div>
+
+      <!-- Sign In Form -->
+      <form id="form-signin" class="space-y-4">
+        <div>
+          <label for="signin-email" class="block text-xs font-bold text-plum-600 dark:text-ivory-100 mb-1">Email Address</label>
+          <input 
+            type="email" 
+            id="signin-email" 
+            placeholder="elena@wellness.com" 
+            required 
+            class="w-full px-3.5 py-2.5 rounded-xl text-xs bg-ivory-100 dark:bg-plum-950 border border-plum-600/10 dark:border-plum-800 text-plum-600 dark:text-ivory-100 focus:outline-none focus:ring-2 focus:ring-terracotta-400"
+          />
+        </div>
+        <div>
+          <div class="flex items-center justify-between mb-1">
+            <label for="signin-password" class="text-xs font-bold text-plum-600 dark:text-ivory-100">Password</label>
+            <button type="button" onclick="openPasswordRecoveryModal()" class="text-[11px] text-terracotta-500 hover:underline">Forgot password?</button>
+          </div>
+          <div class="relative">
+            <input 
+              type="password" 
+              id="signin-password" 
+              placeholder="••••••••" 
+              required 
+              minlength="6"
+              class="w-full px-3.5 py-2.5 pr-10 rounded-xl text-xs bg-ivory-100 dark:bg-plum-950 border border-plum-600/10 dark:border-plum-800 text-plum-600 dark:text-ivory-100 focus:outline-none focus:ring-2 focus:ring-terracotta-400"
+            />
+            <button 
+              type="button" 
+              onclick="togglePasswordVisibility('signin-password', this)"
+              class="absolute right-3 top-2.5 text-plum-400 hover:text-plum-600 transition"
+              title="Show/Hide Password"
+            >
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <button 
+          type="submit" 
+          class="w-full py-3 rounded-xl bg-plum-600 hover:bg-plum-700 dark:bg-terracotta-400 dark:hover:bg-terracotta-500 text-ivory-100 dark:text-plum-950 font-bold text-xs shadow-md transition"
+        >
+          Sign In to Workspace
+        </button>
+
+        <div class="pt-3 border-t border-plum-600/10 dark:border-plum-800 text-center">
+          <p class="text-[11px] text-plum-400 dark:text-ivory-400 mb-2">Or instant test with simulated demo account:</p>
+          <div class="flex gap-2">
+            <button type="button" onclick="demoQuickSignIn('wellness')" class="flex-1 py-1.5 px-2 rounded-lg bg-ivory-200 dark:bg-plum-800 text-[11px] font-bold text-plum-600 dark:text-ivory-100 hover:bg-terracotta-100 transition">
+              Elena (Wellness)
+            </button>
+            <button type="button" onclick="demoQuickSignIn('athlete')" class="flex-1 py-1.5 px-2 rounded-lg bg-ivory-200 dark:bg-plum-800 text-[11px] font-bold text-plum-600 dark:text-ivory-100 hover:bg-terracotta-100 transition">
+              Marcus (Athlete)
+            </button>
+          </div>
+        </div>
+      </form>
+
+      <!-- Register Form -->
+      <form id="form-register" class="space-y-4 hidden">
+        <div>
+          <label for="register-name" class="block text-xs font-bold text-plum-600 dark:text-ivory-100 mb-1">Full Name</label>
+          <input 
+            type="text" 
+            id="register-name" 
+            placeholder="Elena Vance" 
+            required 
+            class="w-full px-3.5 py-2.5 rounded-xl text-xs bg-ivory-100 dark:bg-plum-950 border border-plum-600/10 dark:border-plum-800 text-plum-600 dark:text-ivory-100 focus:outline-none focus:ring-2 focus:ring-terracotta-400"
+          />
+        </div>
+        <div>
+          <label for="register-email" class="block text-xs font-bold text-plum-600 dark:text-ivory-100 mb-1">Email Address</label>
+          <input 
+            type="email" 
+            id="register-email" 
+            placeholder="elena@nourishly.com" 
+            required 
+            class="w-full px-3.5 py-2.5 rounded-xl text-xs bg-ivory-100 dark:bg-plum-950 border border-plum-600/10 dark:border-plum-800 text-plum-600 dark:text-ivory-100 focus:outline-none focus:ring-2 focus:ring-terracotta-400"
+          />
+        </div>
+        <div>
+          <label for="register-password" class="block text-xs font-bold text-plum-600 dark:text-ivory-100 mb-1">Create Password</label>
+          <div class="relative">
+            <input 
+              type="password" 
+              id="register-password" 
+              placeholder="At least 6 characters" 
+              required 
+              minlength="6"
+              class="w-full px-3.5 py-2.5 pr-10 rounded-xl text-xs bg-ivory-100 dark:bg-plum-950 border border-plum-600/10 dark:border-plum-800 text-plum-600 dark:text-ivory-100 focus:outline-none focus:ring-2 focus:ring-terracotta-400"
+            />
+            <button 
+              type="button" 
+              onclick="togglePasswordVisibility('register-password', this)"
+              class="absolute right-3 top-2.5 text-plum-400 hover:text-plum-600 transition"
+              title="Show/Hide Password"
+            >
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <button 
+          type="submit" 
+          class="w-full py-3 rounded-xl bg-plum-600 hover:bg-plum-700 dark:bg-terracotta-400 dark:hover:bg-terracotta-500 text-ivory-100 dark:text-plum-950 font-bold text-xs shadow-md transition"
+        >
+          Create Free Profile
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- 4. Password Recovery Modal -->
+  <div id="password-recovery-modal" class="fixed inset-0 z-50 bg-plum-950/70 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div class="glass-card modal-content-animated w-full max-w-sm rounded-3xl bg-white dark:bg-plum-900 p-6 border border-plum-600/10 dark:border-plum-700 shadow-2xl relative">
+      <button onclick="closePasswordRecoveryModal()" class="absolute top-4 right-4 text-plum-400 hover:text-plum-600 text-xs">✕</button>
+      <h4 class="font-extrabold text-plum-600 dark:text-ivory-100 text-base mb-1">Reset Password</h4>
+      <p class="text-xs text-plum-400 dark:text-ivory-400 mb-4">Enter your registered email and we'll send you a recovery link.</p>
+
+      <form id="recovery-form" class="space-y-3">
+        <input 
+          type="email" 
+          id="recovery-email" 
+          placeholder="your.email@provider.com" 
+          required 
+          class="w-full px-3.5 py-2.5 rounded-xl text-xs bg-ivory-100 dark:bg-plum-950 border border-plum-600/10 dark:border-plum-800 text-plum-600 dark:text-ivory-100 focus:outline-none focus:ring-2 focus:ring-terracotta-400"
+        />
+        <button 
+          type="submit" 
+          class="w-full py-2.5 rounded-xl bg-terracotta-400 hover:bg-terracotta-500 text-white font-bold text-xs shadow-md transition"
+        >
+          Send Recovery Link
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- 5. Legal Terms & Privacy Modal -->
+  <div id="legal-modal" class="fixed inset-0 z-50 bg-plum-950/70 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div class="glass-card modal-content-animated w-full max-w-lg rounded-3xl bg-white dark:bg-plum-900 p-6 sm:p-8 border border-plum-600/10 dark:border-plum-700 shadow-2xl relative">
+      <button onclick="closeLegalModal()" class="absolute top-4 right-4 text-plum-400 hover:text-plum-600 text-xs">✕</button>
+      <h3 id="legal-modal-title" class="text-lg font-black text-plum-600 dark:text-ivory-100 mb-4">Policy Document</h3>
+      <div id="legal-modal-content" class="text-xs text-plum-500 dark:text-ivory-300 space-y-3 leading-relaxed max-h-[60vh] overflow-y-auto pr-2">
+        <!-- Injected by JS -->
+      </div>
+      <div class="mt-6 pt-3 border-t border-plum-600/10 dark:border-plum-800 text-right">
+        <button onclick="closeLegalModal()" class="px-5 py-2 text-xs font-bold rounded-xl bg-plum-600 text-white dark:bg-terracotta-400 dark:text-plum-950">Understood</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating Back to Top Button -->
+  <button 
+    id="back-to-top-btn" 
+    type="button" 
+    aria-label="Back to top"
+    class="fixed bottom-6 right-6 z-40 p-3 rounded-full bg-plum-600 text-ivory-100 dark:bg-terracotta-400 dark:text-plum-950 shadow-xl opacity-0 pointer-events-none transition-all duration-300 hover:scale-110 focus:outline-none"
+  >
+    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 10l7-7m0 0l7 7m-7-7v18" />
+    </svg>
+  </button>
+
+  <!-- Application Script -->
+  <script src="app.js"></script>
+</body>
+</html>
