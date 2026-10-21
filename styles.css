@@ -11,12 +11,15 @@
 html {
   scroll-behavior: smooth;
   font-family: 'Manrope', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  overflow-x: hidden;
+  max-width: 100%;
 }
 
 body {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
+  max-width: 100%;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
@@ -234,3 +237,36 @@ input[type="range"] {
     transition: none;
   }
 }
+
+/* Card Typography & Alignment Enhancements across devices */
+.glass-card {
+  word-break: normal;
+  overflow-wrap: break-word;
+}
+
+/* Ensure clean text wrapping and prevent orphan text inside cards */
+.glass-card h3,
+.glass-card h4,
+.glass-card h5 {
+  text-wrap: balance;
+}
+
+/* Tabular numeric alignment for consistent metric figures across cards */
+.glass-card [id^="stat-"],
+.glass-card [id^="water-"] {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Ensure all CTA buttons and action links remain strictly on a single line */
+#mobile-drawer-auth button,
+#header-auth-container button,
+.cta-btn {
+  white-space: nowrap;
+}
+
+/* Ensure FAQ buttons and general content wrap naturally */
+.faq-toggle {
+  white-space: normal;
+  word-break: normal;
+}
+

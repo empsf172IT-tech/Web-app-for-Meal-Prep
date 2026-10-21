@@ -478,25 +478,42 @@ function initNutritionOverview() {
     // Percentages
     const calPct = Math.min(100, Math.round((data.calories / data.targetCalories) * 100));
     document.getElementById("stat-calories-bar").style.width = `${calPct}%`;
-    document.getElementById("stat-calories-pct").textContent = `${calPct}% of daily goal`;
+    const calPctEl = document.getElementById("stat-calories-pct");
+    if (calPctEl) calPctEl.textContent = `${calPct}% of daily goal`;
+    const calRemEl = document.getElementById("stat-calories-remaining");
+    if (calRemEl) {
+      const calRem = data.targetCalories - data.calories;
+      calRemEl.textContent = calRem > 0 ? `${calRem.toLocaleString()} kcal left` : 'Goal reached';
+    }
 
     // Protein
     document.getElementById("stat-protein-val").textContent = `${data.protein}g`;
     document.getElementById("stat-protein-target").textContent = `/ ${data.targetProtein}g`;
     const proteinPct = Math.min(100, Math.round((data.protein / data.targetProtein) * 100));
     document.getElementById("stat-protein-bar").style.width = `${proteinPct}%`;
+    const protPctEl = document.getElementById("stat-protein-pct");
+    if (protPctEl) protPctEl.textContent = `${proteinPct}%`;
+    const protRemEl = document.getElementById("stat-protein-remaining");
+    if (protRemEl) {
+      const protRem = data.targetProtein - data.protein;
+      protRemEl.textContent = protRem > 0 ? `${protRem}g to optimal` : 'Optimal met';
+    }
 
     // Carbs
     document.getElementById("stat-carbs-val").textContent = `${data.carbs}g`;
     document.getElementById("stat-carbs-target").textContent = `/ ${data.targetCarbs}g`;
     const carbsPct = Math.min(100, Math.round((data.carbs / data.targetCarbs) * 100));
     document.getElementById("stat-carbs-bar").style.width = `${carbsPct}%`;
+    const carbsPctEl = document.getElementById("stat-carbs-pct");
+    if (carbsPctEl) carbsPctEl.textContent = `${carbsPct}%`;
 
     // Fat
     document.getElementById("stat-fat-val").textContent = `${data.fat}g`;
     document.getElementById("stat-fat-target").textContent = `/ ${data.targetFat}g`;
     const fatPct = Math.min(100, Math.round((data.fat / data.targetFat) * 100));
     document.getElementById("stat-fat-bar").style.width = `${fatPct}%`;
+    const fatPctEl = document.getElementById("stat-fat-pct");
+    if (fatPctEl) fatPctEl.textContent = `${fatPct}%`;
 
     // Water
     renderWater(data.water);
@@ -509,6 +526,11 @@ function initNutritionOverview() {
     document.getElementById("water-target-val").textContent = `${(target / 1000).toFixed(1)} L`;
     document.getElementById("water-progress-bar").style.width = `${pct}%`;
     document.getElementById("water-pct-label").textContent = `${pct}% logged`;
+    const waterRemEl = document.getElementById("water-remaining-label");
+    if (waterRemEl) {
+      const remMl = Math.max(0, target - ml);
+      waterRemEl.textContent = remMl > 0 ? `${(remMl / 1000).toFixed(2)} L left` : 'Goal reached';
+    }
     if (window.renderPhonePreview) window.renderPhonePreview();
   }
 
@@ -617,24 +639,24 @@ function initMealPlanner() {
             </div>
 
             ${meal ? `
-              <div class="flex gap-4 items-center">
+              <div class="flex gap-3 sm:gap-4 items-center">
                 <img 
                   src="${meal.image}" 
                   alt="${meal.name}" 
-                  class="w-20 h-20 rounded-xl object-cover shadow-sm border border-plum-600/10 dark:border-plum-700 flex-shrink-0"
+                  class="w-16 h-16 sm:w-20 sm:h-20 rounded-xl object-cover shadow-sm border border-plum-600/10 dark:border-plum-700 shrink-0"
                   loading="lazy"
                   onerror="this.src='assets/images/recipe_salmon.jpg'"
                 />
                 <div class="flex-1 min-w-0">
-                  <h4 class="font-bold text-plum-600 dark:text-ivory-100 text-base leading-tight truncate">
+                  <h4 class="font-bold text-plum-600 dark:text-ivory-100 text-sm sm:text-base leading-snug line-clamp-2">
                     ${meal.name}
                   </h4>
-                  <div class="flex flex-wrap gap-2 text-xs text-plum-500 dark:text-ivory-300 mt-1.5">
-                    <span class="font-semibold text-terracotta-600 dark:text-terracotta-400">${meal.calories} kcal</span>
+                  <div class="flex flex-wrap items-center gap-1.5 sm:gap-2 text-xs text-plum-500 dark:text-ivory-300 mt-1.5">
+                    <span class="font-semibold text-terracotta-600 dark:text-terracotta-400 whitespace-nowrap">${meal.calories} kcal</span>
                     <span>•</span>
-                    <span>P: ${meal.protein}g</span>
-                    <span>C: ${meal.carbs}g</span>
-                    <span>F: ${meal.fat}g</span>
+                    <span class="whitespace-nowrap">P: ${meal.protein}g</span>
+                    <span class="whitespace-nowrap">C: ${meal.carbs}g</span>
+                    <span class="whitespace-nowrap">F: ${meal.fat}g</span>
                   </div>
                 </div>
               </div>
@@ -820,18 +842,18 @@ function initRecipesGallery() {
 
         <div class="p-5 flex-1 flex flex-col justify-between">
           <div>
-            <h4 class="font-bold text-plum-600 dark:text-ivory-100 text-lg group-hover:text-terracotta-500 transition line-clamp-1">
+            <h4 class="font-bold text-plum-600 dark:text-ivory-100 text-base sm:text-lg group-hover:text-terracotta-500 transition line-clamp-2 min-h-[2.75rem] flex items-start leading-snug">
               ${recipe.name}
             </h4>
-            <p class="text-xs text-plum-500 dark:text-ivory-300 mt-2 line-clamp-2 leading-relaxed">
+            <p class="text-xs text-plum-500 dark:text-ivory-300 mt-2 line-clamp-2 leading-relaxed min-h-[2rem]">
               ${recipe.description}
             </p>
           </div>
 
           <div class="mt-4 pt-3 border-t border-plum-600/10 dark:border-plum-800">
-            <div class="flex items-center justify-between text-xs text-plum-500 dark:text-ivory-300 mb-3">
-              <span class="font-bold text-terracotta-600 dark:text-terracotta-400">${recipe.calories} kcal</span>
-              <span class="font-medium">P: ${recipe.protein}g | C: ${recipe.carbs}g | F: ${recipe.fat}g</span>
+            <div class="flex items-center justify-between flex-wrap gap-1 text-xs text-plum-500 dark:text-ivory-300 mb-3">
+              <span class="font-bold text-terracotta-600 dark:text-terracotta-400 whitespace-nowrap">${recipe.calories} kcal</span>
+              <span class="font-medium whitespace-nowrap">P: ${recipe.protein}g | C: ${recipe.carbs}g | F: ${recipe.fat}g</span>
             </div>
 
             <div class="flex gap-2">
@@ -1611,10 +1633,10 @@ function updateHeaderAuthState() {
       mobileDrawerAuth.innerHTML = `
         <button 
           onclick="openAuthModal('signin'); document.getElementById('mobile-menu-drawer').classList.add('hidden');"
-          class="w-full py-2.5 px-4 text-xs font-bold rounded-xl bg-plum-600 hover:bg-plum-700 dark:bg-terracotta-400 dark:hover:bg-terracotta-500 text-ivory-100 dark:text-plum-950 shadow-md transition flex items-center justify-center gap-2"
+          class="w-full py-2.5 px-4 text-xs font-bold rounded-xl bg-plum-600 hover:bg-plum-700 dark:bg-terracotta-400 dark:hover:bg-terracotta-500 text-ivory-100 dark:text-plum-950 shadow-md transition flex items-center justify-center gap-2 whitespace-nowrap"
         >
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"/></svg>
-          Sign In / Demo
+          <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"/></svg>
+          <span class="whitespace-nowrap">Sign In / Demo</span>
         </button>
       `;
     }
